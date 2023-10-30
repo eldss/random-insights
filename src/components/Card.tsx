@@ -14,12 +14,12 @@ export interface CardProps {
  * A simple and flexible card component to handle basic layout and styles for
  * sections of a screen.
  */
-export default function Card({ title, children }: CardProps) {
+export function Card({ title, children }: CardProps) {
   return (
     <Shadow
       containerStyle={$shadowContent}
       stretch={true}
-      distance={7}
+      distance={2}
       paintInside={false}
     >
       <View style={$cardContainer}>
@@ -32,7 +32,9 @@ export default function Card({ title, children }: CardProps) {
 
 const $shadowContent: ViewStyle = {
   alignSelf: "stretch",
-  margin: spacing.xs,
+  marginHorizontal: spacing.xs,
+  marginBottom: spacing.xs,
+  backgroundColor: "white",
 };
 
 const $cardContainer: ViewStyle = {

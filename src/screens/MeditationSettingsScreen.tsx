@@ -1,15 +1,14 @@
 import { View, Text, ViewStyle, ScrollView } from "react-native";
 import React from "react";
-import Card from "../components/Card";
-import { fontSize } from "../theme";
+import { Card } from "../components/Card";
+import { fontSize, spacing } from "../theme";
+import { StatusBar } from "expo-status-bar";
 
-export default function MeditationSettingsScreen() {
+export function MeditationSettingsScreen() {
   return (
     <ScrollView>
+      <StatusBar style="auto" />
       <View style={$container}>
-        <Text style={{ fontSize: fontSize.lg }}>
-          Meditation Settings Screen
-        </Text>
         <Card title="Test 1">
           <Text>Test Body</Text>
         </Card>
@@ -67,4 +66,5 @@ export default function MeditationSettingsScreen() {
 const $container: ViewStyle = {
   flex: 1,
   alignItems: "center",
+  paddingTop: spacing.xs,
 };
