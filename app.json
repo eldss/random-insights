@@ -3,10 +3,10 @@
     "name": "Random Insights",
     "slug": "random-insights",
     "version": "1.0.0",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/LotusIcon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/Decorative_Lotus.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,12 +16,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/Decorative_Lotus.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/Decorative_Lotus.ico"
     },
     "extra": {
       "eas": {
