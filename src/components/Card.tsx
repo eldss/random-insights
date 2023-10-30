@@ -1,5 +1,6 @@
-import { View, Text, ViewStyle, TextStyle } from "react-native";
 import React, { ReactNode } from "react";
+import { Text, TextStyle, View, ViewStyle } from "react-native";
+import { Shadow } from "react-native-shadow-2";
 import { fontSize, spacing } from "../theme";
 
 export interface CardProps {
@@ -15,23 +16,38 @@ export interface CardProps {
  */
 export default function Card({ title, children }: CardProps) {
   return (
-    <View style={$containerBase}>
-      <Text style={$title}>{title}</Text>
-      {children}
-    </View>
+    <Shadow
+      containerStyle={$shadowContent}
+      stretch={true}
+      distance={7}
+      paintInside={false}
+    >
+      <View style={$cardContainer}>
+        <Text style={$title}>{title}</Text>
+        <View style={$childrenContainer}>{children}</View>
+      </View>
+    </Shadow>
   );
 }
 
-const $containerBase: ViewStyle = {
-  borderRadius: spacing.xs,
+const $shadowContent: ViewStyle = {
+  alignSelf: "stretch",
+  margin: spacing.xs,
+};
+
+const $cardContainer: ViewStyle = {
+  borderRadius: spacing.xxs,
   padding: spacing.xs,
   minHeight: 96,
 };
 
-const $title: TextStyle = {
-  fontSize: fontSize.mdLg,
+const $childrenContainer: ViewStyle = {
+  paddingVertical: spacing.xs,
+  paddingHorizontal: spacing.sm,
 };
 
-const $bodyText: TextStyle = {
-  fontSize: fontSize.md,
+const $title: TextStyle = {
+  fontSize: fontSize.mdLg,
+  textAlign: "center",
+  paddingTop: spacing.xxs,
 };
