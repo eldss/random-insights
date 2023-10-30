@@ -1,5 +1,4 @@
 const en = {
-  common: {},
   meditations: {
     common: {
       returnAndStartAgain:
@@ -13,6 +12,7 @@ const en = {
         "As sensations arise and pass away, simply notice them arising and passing away.",
     },
     breath: {
+      title: "Meditate on Breath",
       nostrils: "Observe your breath at the nostrils.",
       stomach: "Observe your breath at the stomach.",
       fullPath:
@@ -23,6 +23,7 @@ const en = {
         "Consciously regulate your breathing. Take deep breaths and pause at the top and bottom of each breath if you wish.",
     },
     physical: {
+      title: "Meditate on Physical Sensations",
       head: "Focus on physical sensations in your head.",
       torso: "Focus on physical sensations in your full torso.",
       upperTorso: "Focus on physical sensations in your upper torso.",
@@ -53,17 +54,28 @@ const en = {
         "Try to keep your awareness on your body as a whole, all at once.",
     },
     sound: {
+      title: "Meditate on Sound",
       consistent:
         "Pick a sound in your environment that is constant. Focus on this sound for the duration of the session.",
       openAwareness: "Keep an open awareness of all the sounds around you.",
     },
-    thought:
-      "Keep an open awareness of your thoughts as they arise and pass away. Our thoughts are often what distracts us in the first place, so this can be challenging. On emerging from distraction, try to briefly recall what you were thinking about. Was it a visual thought? Aural? Something else? Don’t try too hard, if you can’t remember, move on and start again.",
-    emotion:
-      "Keep an open awareness of your emotions and how they manifest as physical sensations as they arise and pass away. If you don’t feel anything in particular, that is fine too. Simply be aware of the neutral feeling until something else arises.",
-    fullOpenAwareness:
-      "Keep an open awareness of all sensations you experience during the session, whether touch, sound, emotions, or any other sensation.",
+    thought: {
+      title: "Meditate on Thought",
+      openAwareness:
+        "Keep an open awareness of your thoughts as they arise and pass away. Our thoughts are often what distracts us in the first place, so this can be challenging. On emerging from distraction, try to briefly recall what you were thinking about. Was it a visual thought? Aural? Something else? Don’t try too hard, if you can’t remember, move on and start again.",
+    },
+    emotion: {
+      title: "Meditate on Emotion",
+      openAwareness:
+        "Keep an open awareness of your emotions and how they manifest as physical sensations as they arise and pass away. If you don’t feel anything in particular, that is fine too. Simply be aware of the neutral feeling until something else arises.",
+    },
+    fullOpenAwareness: {
+      title: "Open Awareness",
+      openAwareness:
+        "Keep an open awareness of all sensations you experience during the session, whether touch, sound, emotions, or any other sensation.",
+    },
     lovingKindness: {
+      title: "Loving Kindness Meditation",
       repeatPhrases:
         "Silently repeat a series of phrases expressing feelings of loving kindness. Start by directing these phrases to yourself. Then direct them to a loved one or group of loved ones, then to an acquaintance, then to someone you don’t know or are neutral towards, then someone you dislike or even hate. Finally, extend the phrases to all living beings",
       phrases:
@@ -72,6 +84,7 @@ const en = {
         "It is ok if you do not actually feel these things when repeating them. Keep going. This is part of the practice. If you do start feeling them, try directing them towards your current focus and continue.",
     },
     mantra: {
+      title: "Mantra Meditation",
       repeatPhrases:
         "Repeat a phrase either silently or out loud. Continue for the duration of the session.",
       phrases:
