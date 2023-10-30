@@ -46,6 +46,7 @@ const $cardContainer: ViewStyle = {
 const $childrenContainer: ViewStyle = {
   paddingVertical: spacing.xs,
   paddingHorizontal: spacing.sm,
+  alignItems: "center",
 };
 
 const $title: TextStyle = {
