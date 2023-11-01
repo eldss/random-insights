@@ -10,7 +10,7 @@ const ariseAndPass: TranslationKeyPath = "meditations.common.ariseAndPass";
 /**
  * All meditation options available in the app.
  */
-export const meditations: Meditation[] = [
+export const MEDITATIONS: Meditation[] = [
   /* 
     ===== Breath Meditations =====
   */

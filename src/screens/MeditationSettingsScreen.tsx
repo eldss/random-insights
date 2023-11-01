@@ -3,6 +3,7 @@ import React from "react";
 import { SafeAreaView, ScrollView, Text, View, ViewStyle } from "react-native";
 import { Card } from "../components/Card";
 import { spacing } from "../theme";
+import { MeditationTypeCard } from "../components";
 
 export function MeditationSettingsScreen() {
   return (
@@ -10,9 +11,7 @@ export function MeditationSettingsScreen() {
       <ScrollView>
         <StatusBar style="auto" />
         <View style={$container}>
-          <Card title="Test Test Test">
-            <Text>Test Body</Text>
-          </Card>
+          <MeditationTypeCard />
           <Card title="Test 2">
             <Text>Test body with longer text</Text>
           </Card>

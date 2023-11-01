@@ -38,9 +38,8 @@ const $shadowContent: ViewStyle = {
 };
 
 const $cardContainer: ViewStyle = {
-  borderRadius: spacing.xxs,
+  borderRadius: spacing.xs,
   padding: spacing.xs,
-  minHeight: 96,
 };
 
 const $childrenContainer: ViewStyle = {
