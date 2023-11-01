@@ -10,7 +10,7 @@ export function MeditationSettingsScreen() {
       <ScrollView>
         <StatusBar style="auto" />
         <View style={$container}>
-          <Card title="Test 1">
+          <Card title="Test Test Test">
             <Text>Test Body</Text>
           </Card>
           <Card title="Test 2">

@@ -19,7 +19,7 @@ const en = {
         "Observe the full path of your breath, from nostrils to stomach.",
       fullBody:
         "Observe your body as a whole as you breathe in and out. Keep your focus on how the breath affects sensations throughout your body.",
-      deeply:
+      regulated:
         "Consciously regulate your breathing. Take deep breaths and pause at the top and bottom of each breath if you wish.",
     },
     physical: {
@@ -55,14 +55,14 @@ const en = {
     },
     sound: {
       title: "Meditate on Sound",
-      consistent:
+      focus:
         "Pick a sound in your environment that is constant. Focus on this sound for the duration of the session.",
       openAwareness: "Keep an open awareness of all the sounds around you.",
     },
     thought: {
       title: "Meditate on Thought",
       openAwareness:
-        "Keep an open awareness of your thoughts as they arise and pass away. Our thoughts are often what distracts us in the first place, so this can be challenging. On emerging from distraction, try to briefly recall what you were thinking about. Was it a visual thought? Aural? Something else? Don’t try too hard, if you can’t remember, move on and start again.",
+        "Keep an open awareness of your thoughts as they arise and pass away. Our thoughts are often what distracts us in the first place, so this can be challenging. Distraction will arise. On emerging from distraction, try to briefly recall what you were thinking about. Was it a visual thought? Sound? Something else? Don’t try too hard, if you can’t remember, move on and start again.",
     },
     emotion: {
       title: "Meditate on Emotion",
@@ -78,17 +78,17 @@ const en = {
       title: "Loving Kindness Meditation",
       repeatPhrases:
         "Silently repeat a series of phrases expressing feelings of loving kindness. Start by directing these phrases to yourself. Then direct them to a loved one or group of loved ones, then to an acquaintance, then to someone you don’t know or are neutral towards, then someone you dislike or even hate. Finally, extend the phrases to all living beings",
-      phrases:
-        "You may already have phrases you like to use, or you can make up new ones. A simple example you can use if you want to: “May you be happy. May you be healthy. May you be free from suffering.”",
-      okIfNoFeelings:
-        "It is ok if you do not actually feel these things when repeating them. Keep going. This is part of the practice. If you do start feeling them, try directing them towards your current focus and continue.",
+      phrasesWithNewLine:
+        "\nYou may already have phrases you like to use, or you can make up new ones. A simple example you can use if you want to: “May you be happy. May you be healthy. May you be free from suffering.”",
+      okIfNoFeelingsWithNewLine:
+        "\nIt is ok if you do not actually feel these things when repeating them. Keep going. This is part of the practice. If you do start feeling them, try directing them towards your current focus and continue.",
     },
     mantra: {
       title: "Mantra Meditation",
       repeatPhrases:
         "Repeat a phrase either silently or out loud. Continue for the duration of the session.",
-      phrases:
-        "The phrase could be anything, but generally it is a meaningless sound or series of syllables. You are welcome to use whatever feels right for you. A simple example you can use if you like is “Om”.",
+      phrasesWithNewLine:
+        "\nThe phrase could be anything, but generally it is a meaningless sound or series of syllables. You are welcome to use whatever feels right for you. A simple example you can use if you like is “Om”.",
     },
   },
 };
