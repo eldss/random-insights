@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Image, ImageStyle } from "react-native";
 import * as React from "react";
+import { Image, ImageStyle, Platform } from "react-native";
 import { MeditationSettingsScreen } from "../screens/MeditationSettingsScreen";
 import { spacing } from "../theme";
 
@@ -14,10 +14,11 @@ export function AppNavigator() {
         screenOptions={{
           title: "Random Insights",
           headerBackVisible: true,
+          headerTitleAlign: "center",
           headerLeft: () => (
             <Image
               style={$icon}
-              source={require("../../assets/LotusIcon.png")}
+              source={require("../../assets/Lotus_Icon_Filled.png")}
             />
           ),
         }}
@@ -32,7 +33,7 @@ export function AppNavigator() {
 }
 
 const $icon: ImageStyle = {
-  width: 50,
-  height: 50,
-  marginRight: spacing.xs,
+  width: 45,
+  height: 45,
+  marginTop: Platform.select({ android: spacing.xxs }),
 };

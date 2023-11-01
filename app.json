@@ -3,27 +3,25 @@
     "name": "Random Insights",
     "slug": "random-insights",
     "version": "1.0.0",
-    "icon": "./assets/LotusIcon.png",
+    "icon": "./assets/Lotus_Icon_Filled_Gray.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/Decorative_Lotus.png",
+      "image": "./assets/Lotus_Icon_Filled.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#d3d3d3"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/Decorative_Lotus.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/Lotus_Icon_Filled.png",
+        "backgroundColor": "#d3d3d3"
       }
     },
     "web": {
-      "favicon": "./assets/Decorative_Lotus.ico"
+      "favicon": "./assets/Lotus_Icon_Filled.png"
     },
     "extra": {
       "eas": {
@@ -31,8 +29,6 @@
       }
     },
     "owner": "eldss",
-    "plugins": [
-      "expo-localization"
-    ]
+    "plugins": ["expo-localization"]
   }
 }
