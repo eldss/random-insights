@@ -1,6 +1,5 @@
 import { Meditation } from "./types";
 
-// TODO: import Jest and test this
 /**
  * Provides a random meditation from a list of meditations.
  */

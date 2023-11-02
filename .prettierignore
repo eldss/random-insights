@@ -38,4 +38,4 @@ yarn-error.*
 .vscode
 
 # Jest
-coverage/
+coverage
