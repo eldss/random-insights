@@ -45,21 +45,15 @@ describe("getRandomMeditation tests", () => {
   });
 
   test.each([
-    { mockRandom: 0.0, expectedIndex: 0, expectedMediationType: "Breath" },
-    { mockRandom: 0.2, expectedIndex: 1, expectedMediationType: "Emotion" },
-    { mockRandom: 0.4, expectedIndex: 2, expectedMediationType: "Thought" },
-    { mockRandom: 0.6, expectedIndex: 3, expectedMediationType: "Sound" },
-    { mockRandom: 0.999, expectedIndex: 4, expectedMediationType: "Physical" },
+    { mockRandom: 0.0, expectedIndex: 0 },
+    { mockRandom: 0.2, expectedIndex: 1 },
+    { mockRandom: 0.4, expectedIndex: 2 },
+    { mockRandom: 0.6, expectedIndex: 3 },
+    { mockRandom: 0.999, expectedIndex: 4 },
   ])(
-    `Returns $expectedMediationType meditation at index $expectedIndex when random number is $mockRandom`,
-    ({ mockRandom, expectedIndex, expectedMediationType }) => {
+    `For a list with 5 elements, returns meditation at index $expectedIndex when random number is $mockRandom`,
+    ({ mockRandom, expectedIndex }) => {
       jest.spyOn(global.Math, "random").mockReturnValue(mockRandom);
-
-      const expectedMediation: Meditation = {
-        type: expectedMediationType as MeditationOption,
-        titleStringId: "meditations",
-        descriptionStringIds: ["meditations"],
-      };
 
       expect(getRandomMeditation(meditations)).toBe(meditations[expectedIndex]);
 
