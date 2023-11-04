@@ -50,6 +50,7 @@ const $childrenContainer: ViewStyle = {
 
 const $title: TextStyle = {
   fontSize: fontSize.mdLg,
+  fontWeight: "500",
   textAlign: "center",
   paddingTop: spacing.xxs,
 };

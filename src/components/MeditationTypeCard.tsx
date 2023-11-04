@@ -1,18 +1,21 @@
-import React, { useContext, useState } from "react";
-import { Text } from "react-native";
+import React, { useState } from "react";
+import { Text, TextStyle } from "react-native";
+import { useTranslations } from "../hooks";
+import { MEDITATIONS, Meditation, getRandomMeditation } from "../meditations";
 import { Card } from "./Card";
-import { Meditation, getRandomMeditation, MEDITATIONS } from "../meditations";
-import { I18nContext } from "../i18n";
+import { fontSize, spacing } from "../theme";
+import { Button } from "./Button";
 
+/**
+ * A component that displays a random meditation type on a card.
+ */
 export function MeditationTypeCard() {
   const [meditation, setMeditation] = useState<Meditation>(
     getRandomMeditation(MEDITATIONS),
   );
-  const i18n = useContext(I18nContext);
+  const translate = useTranslations();
 
-  /**
-   * Choose another random meditation. Will avoid picking the same meditation twice.
-   */
+  // Choose another random meditation. Will avoid picking the same meditation twice.
   const getNextMeditation = () => {
     let next = getRandomMeditation(MEDITATIONS);
     while (next === meditation) {
@@ -22,11 +25,26 @@ export function MeditationTypeCard() {
   };
 
   return (
-    <Card title={i18n.t(meditation.titleStringId)}>
-      <Text>
-        {/* Translate ids and create a single string */}
-        {meditation.descriptionStringIds.map((id) => i18n.t(id)).join(" ")}
+    <Card title={translate("meditationSettingsScreen.instructions")}>
+      <Text style={$meditationTitle}>
+        {translate(meditation.titleStringId)}
       </Text>
+      <Text style={$meditationDescription}>
+        {/* Translate ids and create a single string */}
+        {meditation.descriptionStringIds.map((id) => translate(id)).join(" ")}
+      </Text>
+      <Button onPress={getNextMeditation} preset="refresh" />
     </Card>
   );
 }
+
+const $meditationTitle: TextStyle = {
+  fontSize: fontSize.md,
+  fontWeight: "500",
+  fontStyle: "italic",
+  marginBottom: spacing.xxs,
+};
+
+const $meditationDescription: TextStyle = {
+  fontSize: fontSize.md,
+};

@@ -1,4 +1,7 @@
 const en = {
+  meditationSettingsScreen: {
+    instructions: "Instructions",
+  },
   meditations: {
     common: {
       returnAndStartAgain:
@@ -7,7 +10,7 @@ const en = {
         "Proceed as slowly or as quickly as feels comfortable.",
       breathNaturally: "Breathe naturally.",
       countToTen:
-        "If needed, try mentally noting “in” and “out” with each breath. Or try counting silently from 1 to 10.",
+        "If needed, try mentally noting “in” and “out” with each breath or count silently from 1 to 10.",
       ariseAndPass:
         "As sensations arise and pass away, simply notice them arising and passing away.",
     },
@@ -56,7 +59,7 @@ const en = {
     sound: {
       title: "Meditate On Sound",
       focus:
-        "Pick a sound in your environment that is constant. Focus on this sound for the duration of the session.",
+        "Pick a sound in your environment that is consistent. Focus on this sound for the duration of the session.",
       openAwareness: "Keep an open awareness of all the sounds around you.",
     },
     thought: {
@@ -77,18 +80,18 @@ const en = {
     lovingKindness: {
       title: "Loving Kindness Meditation",
       repeatPhrases:
-        "Silently repeat a series of phrases expressing feelings of loving kindness. Start by directing these phrases to yourself. Then direct them to a loved one or group of loved ones, then to an acquaintance, then to someone you don’t know or are neutral towards, then someone you dislike or even hate. Finally, extend the phrases to all living beings",
+        "Silently repeat a series of phrases expressing feelings of loving kindness. Start by directing these phrases to yourself. Then direct them to a loved one or group of loved ones, then to an acquaintance, then to someone you don’t know or are neutral towards, then someone you dislike or even hate. Finally, extend the phrases to all living beings.",
       phrasesWithNewLine:
-        "\nYou may already have phrases you like to use, or you can make up new ones. A simple example you can use if you want to: “May you be happy. May you be healthy. May you be free from suffering.”",
+        "\n\nYou may already have phrases you like to use, or you can make up new ones. A simple example you can use if you want to: “May you be happy. May you be healthy. May you be free from suffering.”",
       okIfNoFeelingsWithNewLine:
-        "\nIt is ok if you do not actually feel these things when repeating them. Keep going. This is part of the practice. If you do start feeling them, try directing them towards your current focus and continue.",
+        "\n\nIt is ok if you do not actually feel these things when repeating them. Keep going. This is part of the practice.",
     },
     mantra: {
       title: "Mantra Meditation",
       repeatPhrases:
         "Repeat a phrase either silently or out loud. Continue for the duration of the session.",
       phrasesWithNewLine:
-        "\nThe phrase could be anything, but generally it is a meaningless sound or series of syllables. You are welcome to use whatever feels right for you. A simple example you can use if you like is “Om”.",
+        "\n\nThe phrase could be anything, but generally it is a meaningless sound or series of syllables. You are welcome to use whatever feels right for you. A simple example you can use if you like is “Om”.",
     },
   },
 };
