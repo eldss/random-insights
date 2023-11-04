@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, TextStyle } from "react-native";
+import { Text, TextStyle, ViewStyle } from "react-native";
 import { useTranslations } from "../hooks";
 import { MEDITATIONS, Meditation, getRandomMeditation } from "../meditations";
 import { Card } from "./Card";
@@ -33,7 +33,11 @@ export function MeditationTypeCard() {
         {/* Translate ids and create a single string */}
         {meditation.descriptionStringIds.map((id) => translate(id)).join(" ")}
       </Text>
-      <Button onPress={getNextMeditation} preset="refresh" />
+      <Button
+        onPress={getNextMeditation}
+        preset="refresh"
+        style={$buttonOverride}
+      />
     </Card>
   );
 }
@@ -47,4 +51,9 @@ const $meditationTitle: TextStyle = {
 
 const $meditationDescription: TextStyle = {
   fontSize: fontSize.md,
+};
+
+const $buttonOverride: ViewStyle = {
+  marginTop: spacing.xs,
+  width: "100%",
 };

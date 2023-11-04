@@ -14,6 +14,6 @@ const palette = {
 
 export const colors = {
   palette,
-  text: palette.black,
+  buttonText: palette.black,
   buttonTextPressed: palette.gray200,
 };
