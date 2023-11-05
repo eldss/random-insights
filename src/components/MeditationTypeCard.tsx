@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Text, TextStyle, ViewStyle } from "react-native";
 import { useTranslations } from "../hooks";
 import { MEDITATIONS, Meditation, getRandomMeditation } from "../meditations";
-import { Card } from "./Card";
 import { fontSize, spacing } from "../theme";
 import { Button } from "./Button";
+import { Card } from "./Card";
 
 /**
  * A component that displays a random meditation type on a card.

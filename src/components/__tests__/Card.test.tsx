@@ -11,12 +11,12 @@ describe("<Card />", () => {
     );
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 
-  beforeAll(() => {
+  beforeEach(() => {
     // Warnings say this is recommended with user events
     jest.useFakeTimers();
   });
 
-  afterAll(() => {
+  afterEach(() => {
     jest.useRealTimers();
   });
 

@@ -1,4 +1,4 @@
-import { Meditation, MeditationOption } from "../types";
+import { Meditation } from "../types";
 import { getRandomMeditation } from "../utils";
 
 describe("getRandomMeditation tests", () => {

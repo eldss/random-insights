@@ -5,11 +5,11 @@ import { Button, ButtonPreset } from "../Button";
 describe("<Button />", () => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 
-  beforeAll(() => {
+  beforeEach(() => {
     jest.useFakeTimers();
   });
 
-  afterAll(() => {
+  afterEach(() => {
     jest.useRealTimers();
   });
 
