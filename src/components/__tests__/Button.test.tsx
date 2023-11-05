@@ -18,7 +18,7 @@ describe("<Button />", () => {
     ({ preset }) => {
       render(<Button preset={preset as ButtonPreset} />);
       const button = screen.getByRole("button");
-      expect(button).toBeDefined();
+      expect(button).toBeVisible();
     },
   );
 
@@ -29,7 +29,7 @@ describe("<Button />", () => {
       </Button>,
     );
     const text = screen.queryByText("Foo");
-    expect(text.children[0]).toBe("Foo");
+    expect(text).toHaveTextContent("Foo");
   });
 
   test("Button with a preset AND children ignores the children", () => {
@@ -39,7 +39,7 @@ describe("<Button />", () => {
       </Button>,
     );
     const text = screen.queryByText("Foo");
-    expect(text).toBeNull();
+    expect(text).not.toBeOnTheScreen();
   });
 
   test("Button calls onPress when pressed", async () => {
@@ -49,5 +49,21 @@ describe("<Button />", () => {
     const button = screen.getByRole("button");
     await user.press(button);
     expect(fn).toHaveBeenCalledTimes(1);
+  });
+
+  test("Collapsible button faces right when closed", () => {
+    render(
+      <Button preset="collapsible" collapsibleProps={{ isOpen: false }} />,
+    );
+    const button = screen.getByRole("button");
+    // Child is Icon
+    expect(button.children[0]).toHaveProp("name", "right");
+  });
+
+  test("Collapsible button faces down when open", () => {
+    render(<Button preset="collapsible" collapsibleProps={{ isOpen: true }} />);
+    const button = screen.getByRole("button");
+    // Child is Icon
+    expect(button.children[0]).toHaveProp("name", "down");
   });
 });

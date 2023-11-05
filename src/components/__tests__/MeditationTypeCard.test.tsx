@@ -65,23 +65,23 @@ describe("<MeditationTypeCard />", () => {
     render(<MeditationTypeCard />);
     const title = screen.getByText("Instructions");
     const content = screen.getByText("Meditate On Breath");
-    expect(title).toBeDefined();
-    expect(content).toBeDefined();
+    expect(title).toBeVisible();
+    expect(content).toBeVisible();
   });
 
   test("Refresh button displays a new meditation", async () => {
     render(<MeditationTypeCard />);
     const refreshButton = screen.queryAllByRole("button")[1];
     let content = screen.queryByText("Meditate On Breath");
-    expect(content).toBeDefined();
+    expect(content).toBeVisible();
 
     // Ensure new meditation is selected when button pressed
     mockReturnValueIndex = 1;
     await user.press(refreshButton);
     content = screen.queryByText("Meditate On Physical Sensations");
-    expect(content).toBeDefined();
+    expect(content).toBeVisible();
     // Old content was removed
     content = screen.queryByText("Meditate On Breath");
-    expect(content).toBeNull();
+    expect(content).not.toBeOnTheScreen();
   });
 });
