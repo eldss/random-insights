@@ -1,15 +1,16 @@
-import { Feather } from "@expo/vector-icons";
-import React, { ReactNode, useCallback, useMemo } from "react";
+import { AntDesign, Feather } from "@expo/vector-icons";
+import React, { ReactNode, useMemo } from "react";
 import { Pressable, PressableProps, StyleProp, ViewStyle } from "react-native";
 import { colors, fontSize, spacing } from "../theme";
-import { AntDesign } from "@expo/vector-icons";
+
+export type ButtonPreset = "refresh" | "collapsible";
 
 export interface ButtonProps extends PressableProps {
   /**
    * Creates a preset button. If defined, children will be ignored.
    * Provided styles can still overwrite preset styles if desired.
    */
-  preset?: "refresh" | "collapsible";
+  preset?: ButtonPreset;
   /**
    * Optional style override.
    */
@@ -80,6 +81,7 @@ export function Button(props: ButtonProps) {
       style={$finalStyle}
       android_disableSound={true}
       hitSlop={spacing.sm}
+      accessibilityRole="button"
       {...rest}
     >
       {({ pressed }) => getButtonDisplay(pressed)}
