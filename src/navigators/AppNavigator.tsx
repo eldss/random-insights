@@ -4,21 +4,24 @@ import * as React from "react";
 import { Image, ImageStyle, Platform } from "react-native";
 import { MeditationSettingsScreen } from "../screens/MeditationSettingsScreen";
 import { spacing } from "../theme";
+import { useTranslations } from "../hooks";
 
 const Stack = createNativeStackNavigator();
 
 export function AppNavigator() {
+  const translate = useTranslations();
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          title: "Random Insights",
+          title: translate("general.instructions"),
           headerBackVisible: true,
           headerTitleAlign: "center",
           headerLeft: () => (
             <Image
               style={$icon}
               source={require("../../assets/Lotus_Icon_Filled.png")}
+              alt={translate("general.logoAltText")}
             />
           ),
         }}

@@ -25,7 +25,7 @@ export function MeditationTypeCard() {
   };
 
   return (
-    <Card title={translate("meditationSettingsScreen.instructions")}>
+    <Card title={translate("general.instructions")}>
       <Text style={$meditationTitle}>
         {translate(meditation.titleStringId)}
       </Text>

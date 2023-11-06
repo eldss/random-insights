@@ -1,5 +1,7 @@
 const en = {
-  meditationSettingsScreen: {
+  general: {
+    appName: "Random Insights",
+    logoAltText: "Lotus Icon",
     instructions: "Instructions",
   },
   meditations: {
