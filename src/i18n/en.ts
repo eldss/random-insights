@@ -3,6 +3,9 @@ const en = {
     appName: "Random Insights",
     logoAltText: "Lotus Icon",
     instructions: "Instructions",
+    selectTime: "Select Time",
+    hours: "Hours",
+    minutes: "Minutes",
   },
   meditations: {
     common: {

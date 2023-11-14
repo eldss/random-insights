@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import { Text, TextStyle, View, ViewStyle } from "react-native";
 import { Shadow } from "react-native-shadow-2";
-import { colors, fontSize, spacing } from "../theme";
+import { colors, fontSize, spacing, textStyle } from "../theme";
 import { Button } from "./Button";
 
 export interface CardProps {
@@ -9,13 +9,15 @@ export interface CardProps {
   title: string;
   /** Children components used for the body of the card. */
   children?: ReactNode;
+  /** Indicates if the card can be collapsed to hide content. Default true. */
+  collapsible?: boolean;
 }
 
 /**
  * A simple and flexible card component to handle basic layout and styles for
  * sections of a screen.
  */
-export function Card({ title, children }: CardProps) {
+export function Card({ title, children, collapsible = true }: CardProps) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -30,15 +32,17 @@ export function Card({ title, children }: CardProps) {
         <View style={$titleContainer}>
           {/* Columns to help center title, but left align button */}
           <View style={$gridColumn}>
-            <Button
-              preset="collapsible"
-              collapsibleProps={{ isOpen: isOpen }}
-              onPress={() => setIsOpen(!isOpen)}
-              style={$buttonOverride}
-            />
+            {collapsible && (
+              <Button
+                preset="collapsible"
+                collapsibleProps={{ isOpen: isOpen }}
+                onPress={() => setIsOpen(!isOpen)}
+                style={$buttonOverride}
+              />
+            )}
           </View>
           <View style={$centerGridColumn}>
-            <Text style={$title}>{title}</Text>
+            <Text style={textStyle.cardTitle}>{title}</Text>
           </View>
           <View style={$gridColumn}></View>
         </View>
@@ -80,12 +84,6 @@ const $childrenContainer: ViewStyle = {
   paddingVertical: spacing.xs,
   paddingHorizontal: spacing.sm,
   alignItems: "center",
-};
-
-const $title: TextStyle = {
-  fontSize: fontSize.mdLg,
-  fontWeight: "500",
-  textAlign: "center",
 };
 
 const $buttonOverride: ViewStyle = {

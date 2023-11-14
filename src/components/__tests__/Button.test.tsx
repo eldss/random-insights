@@ -66,4 +66,24 @@ describe("<Button />", () => {
     // Child is Icon
     expect(button.children[0]).toHaveProp("name", "down");
   });
+
+  test("Plus button has plus icon and can be pressed", async () => {
+    const fn = jest.fn();
+    render(<Button preset="plus" onPress={fn} />);
+
+    const button = screen.getByRole("button");
+    expect(button.children[0]).toHaveProp("name", "plus");
+    await user.press(button);
+    expect(fn).toHaveBeenCalledTimes(1);
+  });
+
+  test("Minus button has minus icon and can be pressed", async () => {
+    const fn = jest.fn();
+    render(<Button preset="minus" onPress={fn} />);
+
+    const button = screen.getByRole("button");
+    expect(button.children[0]).toHaveProp("name", "minus");
+    await user.press(button);
+    expect(fn).toHaveBeenCalledTimes(1);
+  });
 });

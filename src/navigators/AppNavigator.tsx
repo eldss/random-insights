@@ -14,13 +14,13 @@ export function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          title: translate("general.instructions"),
+          title: translate("general.appName"),
           headerBackVisible: true,
           headerTitleAlign: "center",
           headerLeft: () => (
             <Image
               style={$icon}
-              source={require("../../assets/Lotus_Icon_Filled.png")}
+              source={require("../../assets/Lotus_Icon_Empty.png")}
               alt={translate("general.logoAltText")}
             />
           ),

@@ -16,4 +16,5 @@ export const colors = {
   palette,
   buttonText: palette.black,
   buttonTextPressed: palette.gray200,
+  numberLineColor: palette.black,
 };

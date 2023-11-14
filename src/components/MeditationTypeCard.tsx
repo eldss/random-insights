@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text, TextStyle, ViewStyle } from "react-native";
 import { useTranslations } from "../hooks";
 import { MEDITATIONS, Meditation, getRandomMeditation } from "../meditations";
-import { fontSize, spacing } from "../theme";
+import { fontSize, spacing, textStyle } from "../theme";
 import { Button } from "./Button";
 import { Card } from "./Card";
 
@@ -25,8 +25,8 @@ export function MeditationTypeCard() {
   };
 
   return (
-    <Card title={translate("general.instructions")}>
-      <Text style={$meditationTitle}>
+    <Card title={translate("general.instructions")} collapsible={true}>
+      <Text style={textStyle.cardSubTitle}>
         {translate(meditation.titleStringId)}
       </Text>
       <Text style={$meditationDescription}>
@@ -41,13 +41,6 @@ export function MeditationTypeCard() {
     </Card>
   );
 }
-
-const $meditationTitle: TextStyle = {
-  fontSize: fontSize.md,
-  fontWeight: "500",
-  fontStyle: "italic",
-  marginBottom: spacing.xxs,
-};
 
 const $meditationDescription: TextStyle = {
   fontSize: fontSize.md,

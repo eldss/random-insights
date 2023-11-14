@@ -3,7 +3,7 @@ import React, { ReactNode, useMemo } from "react";
 import { Pressable, PressableProps, StyleProp, ViewStyle } from "react-native";
 import { colors, fontSize, spacing } from "../theme";
 
-export type ButtonPreset = "refresh" | "collapsible";
+export type ButtonPreset = "refresh" | "collapsible" | "plus" | "minus";
 
 export interface ButtonProps extends PressableProps {
   /**
@@ -60,6 +60,22 @@ export function Button(props: ButtonProps) {
             name={collapsibleProps.isOpen ? "down" : "right"}
             size={fontSize.mdLg}
             color={colors.buttonText}
+          />
+        );
+      case "plus":
+        return (
+          <AntDesign
+            name="plus"
+            size={fontSize.mdLg}
+            color={pressed ? colors.buttonTextPressed : colors.buttonText}
+          />
+        );
+      case "minus":
+        return (
+          <AntDesign
+            name="minus"
+            size={fontSize.mdLg}
+            color={pressed ? colors.buttonTextPressed : colors.buttonText}
           />
         );
       default:
