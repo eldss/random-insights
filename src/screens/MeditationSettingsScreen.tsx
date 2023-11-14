@@ -13,7 +13,7 @@ export function MeditationSettingsScreen() {
         <StatusBar style="auto" />
         <View style={$container}>
           <MeditationTypeCard />
-          <SelectTimeCard />
+          <SelectTimeCard tempVal={20} />
           <Card title="Test 4">
             <Text>
               Test body with longer text blah blah blah blah blah blah blah blah

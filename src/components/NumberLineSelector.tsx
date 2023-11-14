@@ -198,7 +198,7 @@ export function NumberLineSelector({
 
   return (
     <GestureDetector gesture={dragGesture}>
-      <View style={$container}>
+      <View style={$container} testID="number-line-selector">
         <Svg height={SVG_HEIGHT} width={width}>
           {/*
            * G groups the vertical lines and is an easier way to manage

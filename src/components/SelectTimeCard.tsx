@@ -8,8 +8,9 @@ import { useTranslations } from "../hooks";
 const MINS_IN_HOUR = 60;
 const MAX_TIME_HOURS = 3;
 
-export function SelectTimeCard() {
-  const [selectedTime, setSelectedTime] = useState(20);
+export function SelectTimeCard({ tempVal }) {
+  // tempVal is temporary until device storage can be used to manage this state
+  const [selectedTime, setSelectedTime] = useState(tempVal);
   const translate = useTranslations();
 
   // Time displayed with hours in a digital clock format
