@@ -65,17 +65,36 @@ describe("<MeditationInstructionsCard />", () => {
 
   test("Refresh button displays a new meditation", async () => {
     renderWithContext();
-    const refreshButton = screen.queryAllByRole("button")[1];
-    let content = screen.queryByText("Meditate On Breath");
+    const refreshButton = screen.getAllByRole("button")[1];
+    let content = screen.getByText("Meditate On Breath");
     expect(content).toBeVisible();
 
     // Ensure new meditation is selected when button pressed
     mockReturnValueIndex = 1;
     await user.press(refreshButton);
-    content = screen.queryByText("Meditate On Physical Sensations");
+    content = screen.getByText("Meditate On Physical Sensations");
     expect(content).toBeVisible();
     // Old content was removed
     content = screen.queryByText("Meditate On Breath");
     expect(content).not.toBeOnTheScreen();
+  });
+
+  test("Dispatch handles opening and closing state", async () => {
+    renderWithContext();
+    const collapseButton = screen.getAllByRole("button")[0];
+
+    // Before, content is visible
+    let content = screen.getByText("Meditate On Breath");
+    expect(content).toBeVisible();
+
+    // After press, content is not visible
+    await user.press(collapseButton);
+    content = screen.queryByText("Meditate On Breath");
+    expect(content).not.toBeOnTheScreen();
+
+    // After second press, visible again
+    await user.press(collapseButton);
+    content = screen.getByText("Meditate On Breath");
+    expect(content).toBeVisible();
   });
 });
