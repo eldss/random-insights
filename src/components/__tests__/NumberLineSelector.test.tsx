@@ -1,9 +1,4 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  userEvent,
-} from "@testing-library/react-native";
+import { render, screen } from "@testing-library/react-native";
 import {
   NumberLineSelector,
   NumberLineSelectorProps,
