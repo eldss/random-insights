@@ -9,7 +9,6 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withDecay,
-  withSpring,
   withTiming,
 } from "react-native-reanimated";
 import Svg, { G, Line } from "react-native-svg";
@@ -36,10 +35,6 @@ const SELECTOR_LINE_LENGTH = 18;
 const SELECTOR_LINE_WIDTH = 2;
 const BOTTOM_SELECTOR_LINE_Y = SVG_HEIGHT - 2;
 // Animation settings
-const INITIAL_VIEW_SPRING_CONFIG = {
-  mass: 2,
-  damping: 25,
-};
 const OUTSIDE_BOUNDS_TIMING_CONFIG = {
   duration: timing.halfSec,
 };
@@ -86,15 +81,14 @@ export function NumberLineSelector({
   // animated values and causes delayed display updates.
   const debouncedSetNumber = lodash.debounce(
     setSelectedNumber,
-    timing.tenthSec * 0.8,
+    timing.tenthSec * 0.7,
   );
 
   // Sets the initial value selected and animates to it
   useEffect(() => {
-    offsetX.value = withSpring(
-      selectedNumber * -LINE_SPACING,
-      INITIAL_VIEW_SPRING_CONFIG,
-    );
+    offsetX.value = withTiming(selectedNumber * -LINE_SPACING, {
+      duration: timing.halfSec,
+    });
   }, []);
 
   // Drag logic for the number line
