@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
 import { Text, TextStyle, ViewStyle } from "react-native";
-import { useTranslations } from "../hooks";
 import {
   useMeditationSettingsDispatch,
   useMeditationSettingsState,
-} from "../hooks/useMeditationSettingsPersistentState";
+  useTranslations,
+} from "../hooks";
 import { MEDITATIONS, Meditation, getRandomMeditation } from "../meditations";
 import { ActionType } from "../state";
 import { fontSize, spacing, textStyle } from "../theme";
@@ -48,7 +48,7 @@ export function MeditationInstructionsCard() {
     <Card
       title={translate("general.instructions")}
       isCollapsible={true}
-      // collapsibleProps={{ isOpen: instructions.isOpen, setIsOpen }}
+      collapsibleProps={{ isOpen: instructions.isOpen, setIsOpen }}
     >
       <Text style={textStyle.cardSubTitle}>
         {translate(meditation.titleStringId)}

@@ -13,7 +13,7 @@ const MEDITATION_SETTINGS_STORAGE_KEY =
   "RandomInsights_MeditationSettingsScreen_State";
 
 /** State if nothing is found in persistent storage. */
-export const DEFAULT_MEDITATION_SETTINGS_STATE: Readonly<MeditationSettingsPersistentState> =
+export const DEFAULT_MEDITATION_SETTINGS_STATE: MeditationSettingsPersistentState =
   {
     instructions: {
       isOpen: true,

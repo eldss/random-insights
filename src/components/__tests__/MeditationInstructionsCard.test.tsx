@@ -1,22 +1,8 @@
 import { render, screen, userEvent } from "@testing-library/react-native";
-import { MeditationTypeCard } from "../MeditationTypeCard";
+import { MeditationInstructionsCard } from "../MeditationInstructionsCard";
 import { Meditation } from "../../meditations";
-
-// Ensure localization gets English and prevent undefined errors
-jest.mock("expo-localization", () => {
-  const original = jest.requireActual("expo-localization");
-  return {
-    __esModule: true,
-    ...original,
-    getLocales: () => {
-      return [
-        {
-          languageCode: "en",
-        },
-      ];
-    },
-  };
-});
+import { PersistentStateProvider } from "../PersistentStateProvider";
+import { DEFAULT_MEDITATION_SETTINGS_STATE } from "../../hooks";
 
 // This value is used to decide which meditation to return.
 // I tried other ways to do this from jest docs but I kept getting errors and
@@ -47,6 +33,14 @@ jest.mock("../../meditations/utils", () => {
 
 describe("<MeditationTypeCard />", () => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+  const renderWithContext = () =>
+    render(
+      <PersistentStateProvider
+        initialMedSettingsState={DEFAULT_MEDITATION_SETTINGS_STATE}
+      >
+        <MeditationInstructionsCard />
+      </PersistentStateProvider>,
+    );
 
   beforeEach(() => {
     jest.useFakeTimers();
@@ -62,7 +56,7 @@ describe("<MeditationTypeCard />", () => {
   });
 
   test("Renders with content visible", () => {
-    render(<MeditationTypeCard />);
+    renderWithContext();
     const title = screen.getByText("Instructions");
     const content = screen.getByText("Meditate On Breath");
     expect(title).toBeVisible();
@@ -70,7 +64,7 @@ describe("<MeditationTypeCard />", () => {
   });
 
   test("Refresh button displays a new meditation", async () => {
-    render(<MeditationTypeCard />);
+    renderWithContext();
     const refreshButton = screen.queryAllByRole("button")[1];
     let content = screen.queryByText("Meditate On Breath");
     expect(content).toBeVisible();

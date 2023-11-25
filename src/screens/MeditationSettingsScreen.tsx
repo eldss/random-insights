@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaView, ScrollView, Text, View, ViewStyle } from "react-native";
-import { MeditationTypeCard } from "../components";
+import { MeditationInstructionsCard } from "../components";
 import { Card } from "../components/Card";
 import { SelectTimeCard } from "../components/SelectTimeCard";
 import { spacing } from "../theme";
@@ -12,7 +12,7 @@ export function MeditationSettingsScreen() {
       <ScrollView>
         <StatusBar style="auto" />
         <View style={$container}>
-          <MeditationTypeCard />
+          <MeditationInstructionsCard />
           <SelectTimeCard tempVal={20} />
           <Card title="Test 4">
             <Text>

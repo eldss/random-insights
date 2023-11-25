@@ -2,14 +2,18 @@ import { StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AppNavigator } from "./src/navigators";
+import { useMeditationSettingsInitialState } from "./src/hooks";
 
 export default function App() {
+  const reHydratedMedSettings = useMeditationSettingsInitialState();
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <PersistentStateProvider initialMedSettingsState={reHydratedMedSettings}>
       <SafeAreaProvider>
-        <AppNavigator />
+        <GestureHandlerRootView style={styles.container}>
+          <AppNavigator />
+        </GestureHandlerRootView>
       </SafeAreaProvider>
-    </GestureHandlerRootView>
+    </PersistentStateProvider>
   );
 }
 
