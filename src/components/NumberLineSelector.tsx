@@ -39,7 +39,7 @@ const OUTSIDE_BOUNDS_TIMING_CONFIG = {
   duration: timing.halfSec,
 };
 const TOSS_BASE_CONFIG = {
-  deceleration: 0.99,
+  deceleration: 0.989,
   rubberBandEffect: true,
   rubberBandFactor: 1.1,
 };

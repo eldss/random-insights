@@ -1,13 +1,24 @@
 import { render, screen } from "@testing-library/react-native";
 import { SelectTimeCard } from "../SelectTimeCard";
+import { PersistentStateProvider } from "../PersistentStateProvider";
+import { DEFAULT_MEDITATION_SETTINGS_STATE } from "../../hooks";
 
 describe("<SelectTimeCard />", () => {
+  let contextState = { ...DEFAULT_MEDITATION_SETTINGS_STATE };
+  beforeEach(() => {
+    contextState = { ...DEFAULT_MEDITATION_SETTINGS_STATE };
+  });
+
   afterAll(() => {
     jest.restoreAllMocks();
   });
 
   test("Component renders", () => {
-    render(<SelectTimeCard tempVal={20} />);
+    render(
+      <PersistentStateProvider initialMedSettingsState={contextState}>
+        <SelectTimeCard />
+      </PersistentStateProvider>,
+    );
     const component = screen.getByText("Select Time");
     const helperText = screen.getByText("Hours : Minutes");
     const numberLine = screen.getByTestId("number-line-selector");
@@ -25,7 +36,12 @@ describe("<SelectTimeCard />", () => {
     [150, "02:30"],
     [180, "03:00"],
   ])("Should format the time correctly", (timeMins, formatted) => {
-    render(<SelectTimeCard tempVal={timeMins} />);
+    contextState.timeSelector.selectedTimeMinutes = timeMins;
+    render(
+      <PersistentStateProvider initialMedSettingsState={contextState}>
+        <SelectTimeCard />
+      </PersistentStateProvider>,
+    );
     const time = screen.getByText(formatted);
     expect(time).toBeVisible();
   });

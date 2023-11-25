@@ -31,7 +31,7 @@ jest.mock("../../meditations/utils", () => {
   };
 });
 
-describe("<MeditationTypeCard />", () => {
+describe("<MeditationInstructionsCard />", () => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   const renderWithContext = () =>
     render(
