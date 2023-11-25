@@ -22,7 +22,7 @@ export function MeditationSettingsScreen() {
         <StatusBar style="auto" />
         <View style={$container}>
           <MeditationInstructionsCard />
-          <SelectTimeCard tempVal={20} />
+          <SelectTimeCard />
           <Button
             title="Save State"
             onPress={() => persistMeditationSettings(state)}
