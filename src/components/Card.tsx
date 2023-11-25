@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from "react";
-import { Text, TextStyle, View, ViewStyle } from "react-native";
+import { Text, View, ViewStyle } from "react-native";
 import { Shadow } from "react-native-shadow-2";
-import { colors, fontSize, spacing, textStyle } from "../theme";
+import { colors, spacing, textStyle } from "../theme";
 import { Button } from "./Button";
 
 export interface CardProps {
@@ -9,16 +9,33 @@ export interface CardProps {
   title: string;
   /** Children components used for the body of the card. */
   children?: ReactNode;
-  /** Indicates if the card can be collapsed to hide content. Default true. */
-  collapsible?: boolean;
+  /** Indicates if the card can be collapsed to hide content. Default false. */
+  isCollapsible?: boolean;
+  /**
+   * Optional state and state setter functions to allow control from parent
+   * components.
+   */
+  collapsibleProps?: {
+    /** Whether card is open or not. */
+    isOpen: boolean;
+    /** Sets the next value for isOpen */
+    setIsOpen: (next: boolean) => void;
+  };
 }
 
 /**
  * A simple and flexible card component to handle basic layout and styles for
  * sections of a screen.
  */
-export function Card({ title, children, collapsible = true }: CardProps) {
-  const [isOpen, setIsOpen] = useState(true);
+export function Card({
+  title,
+  children,
+  isCollapsible = false,
+  collapsibleProps,
+}: CardProps) {
+  const [isOpen, setIsOpen] = collapsibleProps
+    ? [collapsibleProps.isOpen, collapsibleProps.setIsOpen]
+    : useState(true);
 
   return (
     <Shadow
@@ -32,7 +49,7 @@ export function Card({ title, children, collapsible = true }: CardProps) {
         <View style={$titleContainer}>
           {/* Columns to help center title, but left align button */}
           <View style={$gridColumn}>
-            {collapsible && (
+            {isCollapsible && (
               <Button
                 preset="collapsible"
                 collapsibleProps={{ isOpen: isOpen }}

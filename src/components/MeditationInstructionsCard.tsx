@@ -47,7 +47,7 @@ export function MeditationInstructionsCard() {
   return (
     <Card
       title={translate("general.instructions")}
-      collapsible={true}
+      isCollapsible={true}
       // collapsibleProps={{ isOpen: instructions.isOpen, setIsOpen }}
     >
       <Text style={textStyle.cardSubTitle}>

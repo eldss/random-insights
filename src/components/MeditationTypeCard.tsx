@@ -25,7 +25,7 @@ export function MeditationTypeCard() {
   };
 
   return (
-    <Card title={translate("general.instructions")} collapsible={true}>
+    <Card title={translate("general.instructions")} isCollapsible={true}>
       <Text style={textStyle.cardSubTitle}>
         {translate(meditation.titleStringId)}
       </Text>
