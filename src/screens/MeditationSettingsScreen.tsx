@@ -1,9 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaView, ScrollView, Text, View, ViewStyle } from "react-native";
-import { MeditationInstructionsCard } from "../components";
-import { Card } from "../components/Card";
-import { SelectTimeCard } from "../components/SelectTimeCard";
+import {
+  Card,
+  MeditationInstructionsCard,
+  SelectTimeCard,
+} from "../components";
 import { spacing } from "../theme";
 
 export function MeditationSettingsScreen() {

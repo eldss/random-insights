@@ -1,9 +1,9 @@
-import { View, Text, TextStyle } from "react-native";
 import React, { useMemo, useState } from "react";
-import { NumberLineSelector } from "./NumberLineSelector";
+import { Text, TextStyle } from "react-native";
+import { useTranslations } from "../hooks";
 import { spacing, textStyle } from "../theme";
 import { Card } from "./Card";
-import { useTranslations } from "../hooks";
+import { NumberLineSelector } from "./NumberLineSelector";
 
 const MINS_IN_HOUR = 60;
 const MAX_TIME_HOURS = 3;

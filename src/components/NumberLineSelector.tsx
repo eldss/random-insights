@@ -178,8 +178,8 @@ export function NumberLineSelector({
     return num % 10 === 0
       ? MOD_TEN_LINE_START_Y
       : num % 5 === 0
-        ? MOD_FIVE_LINE_START_Y
-        : DEFAULT_LINE_START_Y;
+      ? MOD_FIVE_LINE_START_Y
+      : DEFAULT_LINE_START_Y;
   }, []);
 
   // Animates the number line based on the drag gesture

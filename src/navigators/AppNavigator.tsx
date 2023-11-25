@@ -2,9 +2,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { Image, ImageStyle, Platform } from "react-native";
-import { MeditationSettingsScreen } from "../screens/MeditationSettingsScreen";
-import { spacing } from "../theme";
 import { useTranslations } from "../hooks";
+import { MeditationSettingsScreen } from "../screens";
+import { spacing } from "../theme";
 
 const Stack = createNativeStackNavigator();
 
