@@ -14,7 +14,7 @@ export interface PersistentStateProviderProps {
 }
 
 /**
- * Single component interface for multiple react context providers related to
+ * Interface for multiple react context providers related to
  * persistent state in the app.
  */
 export function PersistentStateProvider({

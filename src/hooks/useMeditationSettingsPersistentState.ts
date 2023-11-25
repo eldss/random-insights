@@ -28,10 +28,8 @@ export const DEFAULT_MEDITATION_SETTINGS_STATE: MeditationSettingsPersistentStat
  * Gets initial state that was persisted on the device for the
  * MeditationSettingsScreen. Returns default values if nothing was found.
  */
-export function useMeditationSettingsInitialState() {
-  const [starterState, setStarterState] = useState(
-    DEFAULT_MEDITATION_SETTINGS_STATE,
-  );
+export function useMeditationSettingsStoredState() {
+  const [storedState, setStoredState] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -40,20 +38,22 @@ export function useMeditationSettingsInitialState() {
           MEDITATION_SETTINGS_STORAGE_KEY,
         );
 
-        if (value !== null) {
-          setStarterState(JSON.parse(value));
-        }
+        value === null
+          ? setStoredState(DEFAULT_MEDITATION_SETTINGS_STATE)
+          : setStoredState(JSON.parse(value));
       } catch (e) {
         console.error(
-          `Problem getting persistent state for key ${MEDITATION_SETTINGS_STORAGE_KEY}. Error: ${e}`,
+          `Problem getting persistent state for key ${MEDITATION_SETTINGS_STORAGE_KEY}. ${e}`,
+          "Setting default state as backup.",
         );
+        setStoredState(DEFAULT_MEDITATION_SETTINGS_STATE);
       }
     };
 
     getData();
   }, []);
 
-  return starterState;
+  return storedState;
 }
 
 /**
@@ -70,7 +70,6 @@ export function useMeditationSettingsDispatch() {
   return useContext(MeditationSettingsDispatchContext);
 }
 
-// TODO: move this to start meditation button. It won't be used anywhere else.
 /**
  * Persists the given state to the user's device.
  * @param state Current meditation settings state
@@ -83,7 +82,8 @@ export async function persistMeditationSettings(
     await AsyncStorage.setItem(MEDITATION_SETTINGS_STORAGE_KEY, stateAsString);
   } catch (e) {
     console.error(
-      `Problem setting persistent state for key ${MEDITATION_SETTINGS_STORAGE_KEY}. Error: ${e}`,
+      `Problem setting persistent state for key ${MEDITATION_SETTINGS_STORAGE_KEY}. ${e}`,
+      "Keeping previously stored values.",
     );
   }
 }
