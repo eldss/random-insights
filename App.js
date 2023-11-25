@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { AppNavigator } from "./src/navigators";
+import { PersistentStateProvider } from "./src/components";
 import { useMeditationSettingsInitialState } from "./src/hooks";
+import { AppNavigator } from "./src/navigators";
 
 export default function App() {
   const reHydratedMedSettings = useMeditationSettingsInitialState();

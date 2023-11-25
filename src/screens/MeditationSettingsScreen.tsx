@@ -1,14 +1,21 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { SafeAreaView, ScrollView, Text, View, ViewStyle } from "react-native";
 import {
-  Card,
-  MeditationInstructionsCard,
-  SelectTimeCard,
-} from "../components";
+  Button,
+  SafeAreaView,
+  ScrollView,
+  View,
+  ViewStyle,
+} from "react-native";
+import { MeditationInstructionsCard, SelectTimeCard } from "../components";
+import {
+  persistMeditationSettings,
+  useMeditationSettingsState,
+} from "../hooks";
 import { spacing } from "../theme";
 
 export function MeditationSettingsScreen() {
+  const state = useMeditationSettingsState();
   return (
     <SafeAreaView>
       <ScrollView>
@@ -16,39 +23,10 @@ export function MeditationSettingsScreen() {
         <View style={$container}>
           <MeditationInstructionsCard />
           <SelectTimeCard tempVal={20} />
-          <Card title="Test 4">
-            <Text>
-              Test body with longer text blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah
-            </Text>
-          </Card>
-          <Card title="Test 5">
-            <Text>
-              Test body with longer text blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah ah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah h blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah ah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah blah blah blah
-              blah blah blah blah blah blah blah blah blah blah
-            </Text>
-          </Card>
+          <Button
+            title="Save State"
+            onPress={() => persistMeditationSettings(state)}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
