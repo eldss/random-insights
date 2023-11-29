@@ -17,7 +17,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/Lotus_Icon_Filled.png",
-        "backgroundColor": "#d3d3d3"
+        "backgroundColor": "#D3D3D3"
       }
     },
     "web": {

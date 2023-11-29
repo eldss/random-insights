@@ -9,6 +9,7 @@ import { ActionType } from "../state";
 import { spacing, textStyle } from "../theme";
 import { Card } from "./Card";
 import { NumberLineSelector } from "./NumberLineSelector";
+import { useTheme } from "@react-navigation/native";
 
 const MINS_IN_HOUR = 60;
 const MAX_TIME_HOURS = 3;
@@ -17,6 +18,13 @@ export function SelectTimeCard() {
   const { timeSelector } = useMeditationSettingsState();
   const dispatch = useMeditationSettingsDispatch();
   const translate = useTranslations();
+  const theme = useTheme();
+  const $textColor: TextStyle = useMemo(
+    () => ({
+      color: theme.colors.text,
+    }),
+    [theme],
+  );
 
   // Time displayed with hours in a digital clock format
   const formattedTime = useMemo(() => {
@@ -54,10 +62,10 @@ export function SelectTimeCard() {
       isCollapsible={true}
       collapsibleProps={{ isOpen: timeSelector.isOpen, setIsOpen }}
     >
-      <Text style={textStyle.cardSubTitle}>
+      <Text style={[textStyle.cardSubTitle, $textColor]}>
         {`${translate("general.hours")} : ${translate("general.minutes")}`}
       </Text>
-      <Text style={$time}>{formattedTime}</Text>
+      <Text style={[$time, $textColor]}>{formattedTime}</Text>
       <NumberLineSelector
         selectedNumber={timeSelector.selectedTimeMinutes}
         setSelectedNumber={setSelectedTime}

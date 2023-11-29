@@ -2,6 +2,7 @@ import { AntDesign, Feather } from "@expo/vector-icons";
 import React, { ReactNode, useMemo } from "react";
 import { Pressable, PressableProps, StyleProp, ViewStyle } from "react-native";
 import { colors, fontSize, spacing } from "../theme";
+import { useTheme } from "@react-navigation/native";
 
 export type ButtonPreset = "refresh" | "collapsible" | "plus" | "minus";
 
@@ -31,6 +32,8 @@ export interface ButtonProps extends PressableProps {
   };
 }
 
+const SIXTY_FIVE_PERCENT_OPACITY = "A6";
+
 /**
  * Flexible button component.
  */
@@ -42,6 +45,7 @@ export function Button(props: ButtonProps) {
     collapsibleProps = { isOpen: true },
     ...rest
   } = props;
+  const theme = useTheme();
 
   // Gets what should be displayed as text in the button based on preset value
   const getButtonDisplay = (pressed: boolean): ReactNode => {
@@ -51,7 +55,11 @@ export function Button(props: ButtonProps) {
           <Feather
             name="refresh-cw"
             size={fontSize.mdLg}
-            color={pressed ? colors.buttonTextPressed : colors.buttonText}
+            color={
+              pressed
+                ? theme.colors.text + SIXTY_FIVE_PERCENT_OPACITY
+                : theme.colors.text
+            }
           />
         );
       case "collapsible":
@@ -59,7 +67,7 @@ export function Button(props: ButtonProps) {
           <AntDesign
             name={collapsibleProps.isOpen ? "down" : "right"}
             size={fontSize.mdLg}
-            color={colors.buttonText}
+            color={theme.colors.text}
           />
         );
       case "plus":
@@ -67,7 +75,11 @@ export function Button(props: ButtonProps) {
           <AntDesign
             name="plus"
             size={fontSize.mdLg}
-            color={pressed ? colors.buttonTextPressed : colors.buttonText}
+            color={
+              pressed
+                ? theme.colors.text + SIXTY_FIVE_PERCENT_OPACITY
+                : theme.colors.text
+            }
           />
         );
       case "minus":
@@ -75,7 +87,11 @@ export function Button(props: ButtonProps) {
           <AntDesign
             name="minus"
             size={fontSize.mdLg}
-            color={pressed ? colors.buttonTextPressed : colors.buttonText}
+            color={
+              pressed
+                ? theme.colors.text + SIXTY_FIVE_PERCENT_OPACITY
+                : theme.colors.text
+            }
           />
         );
       default:

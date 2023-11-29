@@ -1,4 +1,6 @@
-const palette = {
+import { Theme } from "@react-navigation/native";
+
+const neutral = {
   white: "#FFFFFF",
   gray100: "#E6E6E6",
   gray200: "#CCCCCC",
@@ -12,9 +14,25 @@ const palette = {
   black: "#000000",
 };
 
+const robes = {
+  red: "#990113",
+  darkRed: "#350000",
+  yellow: "#FFD786",
+};
+
+export const MONK_ROBES: Theme = {
+  dark: true,
+  colors: {
+    primary: robes.red,
+    background: robes.darkRed,
+    card: robes.red,
+    text: neutral.gray100,
+    border: robes.yellow,
+    notification: robes.yellow,
+  },
+};
+
 export const colors = {
-  palette,
-  buttonText: palette.black,
-  buttonTextPressed: palette.gray200,
-  numberLineColor: palette.black,
+  palette: neutral,
+  theme: MONK_ROBES,
 };

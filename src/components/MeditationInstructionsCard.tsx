@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { Text, TextStyle, ViewStyle } from "react-native";
 import {
   useMeditationSettingsDispatch,
@@ -10,6 +10,7 @@ import { ActionType } from "../state";
 import { fontSize, spacing, textStyle } from "../theme";
 import { Button } from "./Button";
 import { Card } from "./Card";
+import { useTheme } from "@react-navigation/native";
 
 /**
  * A component that displays a random meditation type on a card.
@@ -19,8 +20,16 @@ export function MeditationInstructionsCard() {
     getRandomMeditation(MEDITATIONS),
   );
   const { instructions } = useMeditationSettingsState();
+  const theme = useTheme();
   const dispatch = useMeditationSettingsDispatch();
   const translate = useTranslations();
+
+  const $textColor: TextStyle = useMemo(
+    () => ({
+      color: theme.colors.text,
+    }),
+    [theme],
+  );
 
   // Enable users to save this component as open or closed upon returning to the screen.
   // Not everyone will care about getting a random meditation to work on.
@@ -50,10 +59,10 @@ export function MeditationInstructionsCard() {
       isCollapsible={true}
       collapsibleProps={{ isOpen: instructions.isOpen, setIsOpen }}
     >
-      <Text style={textStyle.cardSubTitle}>
+      <Text style={[textStyle.cardSubTitle, $textColor]}>
         {translate(meditation.titleStringId)}
       </Text>
-      <Text style={$meditationDescription}>
+      <Text style={[$meditationDescription, $textColor]}>
         {/* Translate ids and create a single string */}
         {meditation.descriptionStringIds.map((id) => translate(id)).join(" ")}
       </Text>

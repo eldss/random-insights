@@ -13,13 +13,15 @@ import {
   useMeditationSettingsState,
 } from "../hooks";
 import { spacing } from "../theme";
+import { useTheme } from "@react-navigation/native";
 
 export function MeditationSettingsScreen() {
   const state = useMeditationSettingsState();
+  const theme = useTheme();
   return (
     <SafeAreaView>
       <ScrollView>
-        <StatusBar style="auto" />
+        <StatusBar style={theme.dark ? "light" : "dark"} />
         <View style={$container}>
           <MeditationInstructionsCard />
           <SelectTimeCard />

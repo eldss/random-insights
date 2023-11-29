@@ -1,8 +1,9 @@
-import React, { ReactNode, useState } from "react";
-import { Text, View, ViewStyle } from "react-native";
+import React, { ReactNode, useMemo, useState } from "react";
+import { Text, TextStyle, View, ViewStyle } from "react-native";
 import { Shadow } from "react-native-shadow-2";
 import { colors, spacing, textStyle } from "../theme";
 import { Button } from "./Button";
+import { useTheme } from "@react-navigation/native";
 
 export interface CardProps {
   /** Title text for the card. */
@@ -37,9 +38,23 @@ export function Card({
     ? [collapsibleProps.isOpen, collapsibleProps.setIsOpen]
     : useState(true);
 
+  const theme = useTheme();
+  const $cardColor: ViewStyle = useMemo(
+    () => ({
+      backgroundColor: theme.colors.card,
+    }),
+    [theme],
+  );
+  const $textColor: TextStyle = useMemo(
+    () => ({
+      color: theme.colors.text,
+    }),
+    [theme],
+  );
+
   return (
     <Shadow
-      containerStyle={$shadowContent}
+      containerStyle={[$shadowContent, $cardColor]}
       stretch={true}
       distance={spacing.xxs}
       paintInside={false}
@@ -59,7 +74,7 @@ export function Card({
             )}
           </View>
           <View style={$centerGridColumn}>
-            <Text style={textStyle.cardTitle}>{title}</Text>
+            <Text style={[textStyle.cardTitle, $textColor]}>{title}</Text>
           </View>
           <View style={$gridColumn}></View>
         </View>

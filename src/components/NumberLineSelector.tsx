@@ -1,6 +1,6 @@
 import lodash from "lodash";
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { View, ViewStyle, useWindowDimensions } from "react-native";
+import { TextStyle, View, ViewStyle, useWindowDimensions } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   cancelAnimation,
@@ -13,6 +13,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { G, Line } from "react-native-svg";
 import { colors, timing } from "../theme";
+import { useTheme } from "@react-navigation/native";
 
 /*
  * Constants for SVG. May put in props in the future if moved to a library or put in
@@ -83,6 +84,8 @@ export function NumberLineSelector({
     setSelectedNumber,
     timing.tenthSec * 0.7,
   );
+  // Color settings.
+  const theme = useTheme();
 
   // Sets the initial value selected and animates to it
   useEffect(() => {
@@ -206,7 +209,7 @@ export function NumberLineSelector({
                   x={LINE_SPACING * num}
                   y1={getLineYStart(num)}
                   y2={LINE_END_Y}
-                  stroke={colors.numberLineColor}
+                  stroke={theme.colors.text}
                   strokeWidth={LINE_WIDTH}
                   key={num}
                 />
@@ -218,7 +221,7 @@ export function NumberLineSelector({
             x2={midX + SELECTOR_LINE_LENGTH / 2}
             y={BOTTOM_SELECTOR_LINE_Y}
             strokeWidth={SELECTOR_LINE_WIDTH}
-            stroke={colors.numberLineColor}
+            stroke={theme.colors.text}
           />
         </Svg>
       </View>
