@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo, useState } from "react";
+import { useTheme } from "@react-navigation/native";
+import React, { useCallback, useMemo } from "react";
 import { Text, TextStyle } from "react-native";
 import {
   useMeditationSettingsDispatch,
@@ -9,8 +10,7 @@ import { ActionType } from "../state";
 import { fontSize, spacing, textStyle } from "../theme";
 import { Card } from "./Card";
 import { NumberLineSelector } from "./NumberLineSelector";
-import { useTheme } from "@react-navigation/native";
-import { Button } from "./Button";
+import { OptionSelectGroup } from "./OptionSelectGroup";
 
 const MINS_IN_HOUR = 60;
 const MAX_TIME_HOURS = 3;
@@ -36,17 +36,6 @@ export function SelectTimeCard() {
     return `0${hours}:${isMinsOneDigit ? "0" : ""}${mins}`;
   }, [timeSelector.selectedTimeMinutes]);
 
-  const setIsOpen = useCallback(
-    (nextIsOpen: boolean) => {
-      if (nextIsOpen) {
-        dispatch({ type: ActionType.OPEN_TIME_SELECTOR });
-      } else {
-        dispatch({ type: ActionType.CLOSE_TIME_SELECTOR });
-      }
-    },
-    [dispatch],
-  );
-
   const setSelectedTime = useCallback(
     (time: number) => {
       dispatch({
@@ -58,11 +47,7 @@ export function SelectTimeCard() {
   );
 
   return (
-    <Card
-      title={translate("general.selectTime")}
-      isCollapsible={true}
-      collapsibleProps={{ isOpen: timeSelector.isOpen, setIsOpen }}
-    >
+    <Card title={translate("general.selectTime")}>
       <Text style={[$hint, $textColor]}>
         {`${translate("general.hours")} : ${translate("general.minutes")}`}
       </Text>
@@ -73,13 +58,14 @@ export function SelectTimeCard() {
         maxNumberSelectable={MAX_TIME_HOURS * MINS_IN_HOUR}
       />
       <Text style={[$hint, $textColor]}>{translate("general.seconds")}</Text>
-      <Button
-        preset="selectOption"
-        selectOptionProps={{ text: "Test Not Selected", isSelected: false }}
-      />
-      <Button
-        preset="selectOption"
-        selectOptionProps={{ text: "Test Selected", isSelected: true }}
+      <OptionSelectGroup
+        options={[
+          { text: "5", value: 1 },
+          { text: "10", value: 1 },
+          { text: "30", value: 1 },
+          { text: "60", value: 2 },
+        ]}
+        selectedIndex={0}
       />
     </Card>
   );

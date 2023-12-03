@@ -9,7 +9,6 @@ describe("<PersistentStateProvider />", () => {
         isOpen: true,
       },
       timeSelector: {
-        isOpen: true,
         selectedTimeMinutes: 20,
       },
     };

@@ -51,27 +51,4 @@ describe("<SelectTimeCard />", () => {
     const time = screen.getByText(formatted);
     expect(time).toBeVisible();
   });
-
-  test("Dispatch handles opening and closing state", async () => {
-    render(
-      <PersistentStateProvider initialMedSettingsState={contextState}>
-        <SelectTimeCard />
-      </PersistentStateProvider>,
-    );
-
-    // Before, content is visible
-    const collapseButton = screen.getAllByRole("button")[0];
-    let content = screen.getByText("Hours : Minutes");
-    expect(content).toBeVisible();
-
-    // After press, content is not visible
-    await user.press(collapseButton);
-    content = screen.queryByText("Hours : Minutes");
-    expect(content).not.toBeOnTheScreen();
-
-    // After second press, visible again
-    await user.press(collapseButton);
-    content = screen.getByText("Hours : Minutes");
-    expect(content).toBeVisible();
-  });
 });

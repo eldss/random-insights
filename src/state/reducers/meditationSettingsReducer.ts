@@ -10,8 +10,6 @@ export interface MeditationSettingsPersistentState {
   };
   /** State for time selector card. */
   timeSelector: {
-    /** Whether the card is open or not. */
-    isOpen: boolean;
     /** Time selected for the meditation session, in minutes. */
     selectedTimeMinutes: number;
   };
@@ -21,8 +19,6 @@ export interface MeditationSettingsPersistentState {
 export enum ActionType {
   OPEN_INSTRUCTIONS,
   CLOSE_INSTRUCTIONS,
-  OPEN_TIME_SELECTOR,
-  CLOSE_TIME_SELECTOR,
   UPDATE_TIME,
 }
 
@@ -49,14 +45,6 @@ export function meditationSettingsReducer(
 
     case ActionType.CLOSE_INSTRUCTIONS:
       next.instructions.isOpen = false;
-      return next;
-
-    case ActionType.OPEN_TIME_SELECTOR:
-      next.timeSelector.isOpen = true;
-      return next;
-
-    case ActionType.CLOSE_TIME_SELECTOR:
-      next.timeSelector.isOpen = false;
       return next;
 
     case ActionType.UPDATE_TIME:

@@ -37,31 +37,31 @@ describe("useMeditationStoredState Hook", () => {
     [
       {
         instructions: { isOpen: false },
-        timeSelector: { isOpen: true, selectedTimeMinutes: 20 },
+        timeSelector: { selectedTimeMinutes: 20 },
       },
     ],
     [
       {
         instructions: { isOpen: true },
-        timeSelector: { isOpen: false, selectedTimeMinutes: 20 },
+        timeSelector: { selectedTimeMinutes: 20 },
       },
     ],
     [
       {
         instructions: { isOpen: true },
-        timeSelector: { isOpen: true, selectedTimeMinutes: 50 },
+        timeSelector: { selectedTimeMinutes: 50 },
       },
     ],
     [
       {
         instructions: { isOpen: false },
-        timeSelector: { isOpen: false, selectedTimeMinutes: 20 },
+        timeSelector: { selectedTimeMinutes: 20 },
       },
     ],
     [
       {
         instructions: { isOpen: false },
-        timeSelector: { isOpen: false, selectedTimeMinutes: 90 },
+        timeSelector: { selectedTimeMinutes: 90 },
       },
     ],
   ])("Returns exact state that is stored: %o", async (object) => {

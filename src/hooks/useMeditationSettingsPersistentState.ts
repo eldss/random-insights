@@ -19,7 +19,6 @@ export const DEFAULT_MEDITATION_SETTINGS_STATE: MeditationSettingsPersistentStat
       isOpen: true,
     },
     timeSelector: {
-      isOpen: true,
       selectedTimeMinutes: 20,
     },
   };

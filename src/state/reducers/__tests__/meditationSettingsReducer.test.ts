@@ -11,7 +11,6 @@ describe("meditationSettingsReducer tests", () => {
       isOpen: true,
     },
     timeSelector: {
-      isOpen: true,
       selectedTimeMinutes: 20,
     },
   };
@@ -37,18 +36,6 @@ describe("meditationSettingsReducer tests", () => {
 
     action.type = ActionType.OPEN_INSTRUCTIONS;
     expectedState.instructions.isOpen = true;
-    nextState = meditationSettingsReducer(nextState, action);
-    expect(startState).toEqual(expectedState);
-  });
-
-  test("Can close and open the time selector card", () => {
-    const action: Action = { type: ActionType.CLOSE_TIME_SELECTOR };
-    expectedState.timeSelector.isOpen = false;
-    nextState = meditationSettingsReducer(startState, action);
-    expect(nextState).toEqual(expectedState);
-
-    action.type = ActionType.OPEN_TIME_SELECTOR;
-    expectedState.timeSelector.isOpen = true;
     nextState = meditationSettingsReducer(nextState, action);
     expect(startState).toEqual(expectedState);
   });

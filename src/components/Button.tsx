@@ -116,15 +116,6 @@ export function Button(props: ButtonProps) {
     }
   };
 
-  // Gets what styles should be used based on preset value
-  const $finalStyle = useMemo(() => {
-    // TODO: Do I need this at all?
-    switch (preset) {
-      default:
-        return [$baseContainer, style];
-    }
-  }, [preset, style]);
-
   return (
     <Pressable
       // style={$finalStyle}
@@ -151,6 +142,5 @@ const $optionContainerBase: ViewStyle = {
 
 const $optionTextBase: TextStyle = {
   fontSize: fontSize.md,
+  textAlign: "center",
 };
-
-const $optionSelected: ViewStyle = {};
