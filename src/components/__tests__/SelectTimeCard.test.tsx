@@ -60,7 +60,7 @@ describe("<SelectTimeCard />", () => {
     );
 
     // Before, content is visible
-    const collapseButton = screen.getByRole("button");
+    const collapseButton = screen.getAllByRole("button")[0];
     let content = screen.getByText("Hours : Minutes");
     expect(content).toBeVisible();
 

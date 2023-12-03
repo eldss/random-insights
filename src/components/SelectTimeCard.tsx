@@ -6,10 +6,11 @@ import {
   useTranslations,
 } from "../hooks";
 import { ActionType } from "../state";
-import { spacing, textStyle } from "../theme";
+import { fontSize, spacing, textStyle } from "../theme";
 import { Card } from "./Card";
 import { NumberLineSelector } from "./NumberLineSelector";
 import { useTheme } from "@react-navigation/native";
+import { Button } from "./Button";
 
 const MINS_IN_HOUR = 60;
 const MAX_TIME_HOURS = 3;
@@ -62,7 +63,7 @@ export function SelectTimeCard() {
       isCollapsible={true}
       collapsibleProps={{ isOpen: timeSelector.isOpen, setIsOpen }}
     >
-      <Text style={[textStyle.cardSubTitle, $textColor]}>
+      <Text style={[$hint, $textColor]}>
         {`${translate("general.hours")} : ${translate("general.minutes")}`}
       </Text>
       <Text style={[$time, $textColor]}>{formattedTime}</Text>
@@ -71,6 +72,15 @@ export function SelectTimeCard() {
         setSelectedNumber={setSelectedTime}
         maxNumberSelectable={MAX_TIME_HOURS * MINS_IN_HOUR}
       />
+      <Text style={[$hint, $textColor]}>{translate("general.seconds")}</Text>
+      <Button
+        preset="selectOption"
+        selectOptionProps={{ text: "Test Not Selected", isSelected: false }}
+      />
+      <Button
+        preset="selectOption"
+        selectOptionProps={{ text: "Test Selected", isSelected: true }}
+      />
     </Card>
   );
 }
@@ -78,4 +88,9 @@ export function SelectTimeCard() {
 const $time: TextStyle = {
   fontSize: 60,
   marginBottom: spacing.md,
+};
+
+const $hint: TextStyle = {
+  ...textStyle.cardSubTitle,
+  fontSize: fontSize.md,
 };

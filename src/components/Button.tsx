@@ -1,10 +1,18 @@
 import { AntDesign, Feather } from "@expo/vector-icons";
 import React, { ReactNode, useMemo } from "react";
-import { Pressable, PressableProps, StyleProp, ViewStyle } from "react-native";
-import { colors, fontSize, spacing } from "../theme";
+import {
+  Pressable,
+  PressableProps,
+  StyleProp,
+  View,
+  ViewStyle,
+  Text,
+  TextStyle,
+} from "react-native";
+import { fontSize, spacing } from "../theme";
 import { useTheme } from "@react-navigation/native";
 
-export type ButtonPreset = "refresh" | "collapsible" | "plus" | "minus";
+export type ButtonPreset = "refresh" | "collapsible" | "selectOption";
 
 export interface ButtonProps extends PressableProps {
   /**
@@ -30,9 +38,22 @@ export interface ButtonProps extends PressableProps {
      */
     isOpen: boolean;
   };
+  /**
+   * Props for the selectOption preset.
+   */
+  selectOptionProps?: {
+    /**
+     * Whether the option is selected or not.
+     */
+    isSelected: boolean;
+    /**
+     * Text to display in the select option.
+     */
+    text: string;
+  };
 }
 
-const SIXTY_FIVE_PERCENT_OPACITY = "A6";
+const SIXTY_FIVE_PERCENT_OPACITY_HEX = "A6";
 
 /**
  * Flexible button component.
@@ -43,6 +64,7 @@ export function Button(props: ButtonProps) {
     preset,
     style,
     collapsibleProps = { isOpen: true },
+    selectOptionProps,
     ...rest
   } = props;
   const theme = useTheme();
@@ -57,7 +79,7 @@ export function Button(props: ButtonProps) {
             size={fontSize.mdLg}
             color={
               pressed
-                ? theme.colors.text + SIXTY_FIVE_PERCENT_OPACITY
+                ? theme.colors.text + SIXTY_FIVE_PERCENT_OPACITY_HEX
                 : theme.colors.text
             }
           />
@@ -70,29 +92,24 @@ export function Button(props: ButtonProps) {
             color={theme.colors.text}
           />
         );
-      case "plus":
-        return (
-          <AntDesign
-            name="plus"
-            size={fontSize.mdLg}
-            color={
-              pressed
-                ? theme.colors.text + SIXTY_FIVE_PERCENT_OPACITY
-                : theme.colors.text
+      case "selectOption":
+        const $viewColor: ViewStyle = selectOptionProps.isSelected
+          ? {
+              borderColor: theme.colors.border,
+              backgroundColor: theme.colors.primary,
             }
-          />
-        );
-      case "minus":
+          : {
+              borderColor: theme.colors.border,
+            };
+        const $textColor: TextStyle = selectOptionProps.isSelected
+          ? { color: theme.colors.background }
+          : { color: theme.colors.border };
         return (
-          <AntDesign
-            name="minus"
-            size={fontSize.mdLg}
-            color={
-              pressed
-                ? theme.colors.text + SIXTY_FIVE_PERCENT_OPACITY
-                : theme.colors.text
-            }
-          />
+          <View style={[$optionContainerBase, $viewColor]}>
+            <Text style={[$optionTextBase, $textColor]}>
+              {selectOptionProps.text}
+            </Text>
+          </View>
         );
       default:
         return children;
@@ -110,7 +127,7 @@ export function Button(props: ButtonProps) {
 
   return (
     <Pressable
-      style={$finalStyle}
+      // style={$finalStyle}
       android_disableSound={true}
       hitSlop={spacing.sm}
       accessibilityRole="button"
@@ -124,3 +141,16 @@ export function Button(props: ButtonProps) {
 const $baseContainer: ViewStyle = {
   alignItems: "center",
 };
+
+const $optionContainerBase: ViewStyle = {
+  padding: spacing.xs,
+  margin: spacing.xxs,
+  borderWidth: 1,
+  borderRadius: spacing.xxs,
+};
+
+const $optionTextBase: TextStyle = {
+  fontSize: fontSize.md,
+};
+
+const $optionSelected: ViewStyle = {};

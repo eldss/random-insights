@@ -6,6 +6,7 @@ const en = {
     selectTime: "Select Time",
     hours: "Hours",
     minutes: "Minutes",
+    seconds: "Seconds",
   },
   meditations: {
     common: {

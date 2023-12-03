@@ -209,7 +209,7 @@ export function NumberLineSelector({
                   x={LINE_SPACING * num}
                   y1={getLineYStart(num)}
                   y2={LINE_END_Y}
-                  stroke={theme.colors.text}
+                  stroke={theme.colors.primary}
                   strokeWidth={LINE_WIDTH}
                   key={num}
                 />
@@ -221,7 +221,7 @@ export function NumberLineSelector({
             x2={midX + SELECTOR_LINE_LENGTH / 2}
             y={BOTTOM_SELECTOR_LINE_Y}
             strokeWidth={SELECTOR_LINE_WIDTH}
-            stroke={theme.colors.text}
+            stroke={theme.colors.primary}
           />
         </Svg>
       </View>

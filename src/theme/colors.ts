@@ -17,18 +17,19 @@ const neutral = {
 const robes = {
   red: "#990113",
   darkRed: "#350000",
-  yellow: "#FFD786",
+  orange: "#EA751F",
+  yellow: "#E3AC26",
 };
 
 export const MONK_ROBES: Theme = {
   dark: true,
   colors: {
-    primary: robes.red,
+    primary: robes.yellow,
     background: robes.darkRed,
     card: robes.red,
     text: neutral.gray100,
     border: robes.yellow,
-    notification: robes.yellow,
+    notification: robes.orange,
   },
 };
 

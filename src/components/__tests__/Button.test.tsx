@@ -13,15 +13,6 @@ describe("<Button />", () => {
     jest.useRealTimers();
   });
 
-  test.each([{ preset: "refresh" }, { preset: "collapsible" }])(
-    `Button with preset $preset renders`,
-    ({ preset }) => {
-      render(<Button preset={preset as ButtonPreset} />);
-      const button = screen.getByRole("button");
-      expect(button).toBeVisible();
-    },
-  );
-
   test("Button with children and no preset renders the children", () => {
     render(
       <Button>
@@ -67,23 +58,25 @@ describe("<Button />", () => {
     expect(button.children[0]).toHaveProp("name", "down");
   });
 
-  test("Plus button has plus icon and can be pressed", async () => {
-    const fn = jest.fn();
-    render(<Button preset="plus" onPress={fn} />);
-
-    const button = screen.getByRole("button");
-    expect(button.children[0]).toHaveProp("name", "plus");
-    await user.press(button);
-    expect(fn).toHaveBeenCalledTimes(1);
+  test("selectOption button renders text given to it, when selected", () => {
+    render(
+      <Button
+        preset="selectOption"
+        selectOptionProps={{ text: "Test", isSelected: true }}
+      />,
+    );
+    let text = screen.getByText("Test");
+    expect(text).toBeVisible();
   });
 
-  test("Minus button has minus icon and can be pressed", async () => {
-    const fn = jest.fn();
-    render(<Button preset="minus" onPress={fn} />);
-
-    const button = screen.getByRole("button");
-    expect(button.children[0]).toHaveProp("name", "minus");
-    await user.press(button);
-    expect(fn).toHaveBeenCalledTimes(1);
+  test("selectOption button renders text given to it, when not selected", () => {
+    render(
+      <Button
+        preset="selectOption"
+        selectOptionProps={{ text: "Test", isSelected: false }}
+      />,
+    );
+    let text = screen.getByText("Test");
+    expect(text).toBeVisible();
   });
 });

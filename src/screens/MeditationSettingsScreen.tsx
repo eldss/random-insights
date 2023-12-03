@@ -28,6 +28,7 @@ export function MeditationSettingsScreen() {
           <Button
             title="Save State"
             onPress={() => persistMeditationSettings(state)}
+            color={theme.colors.primary}
           />
         </View>
       </ScrollView>

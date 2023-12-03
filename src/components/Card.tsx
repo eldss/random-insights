@@ -89,11 +89,10 @@ const $shadowContent: ViewStyle = {
   alignSelf: "stretch",
   marginHorizontal: spacing.xs,
   marginBottom: spacing.xs,
-  backgroundColor: colors.palette.white,
+  borderRadius: spacing.xxs,
 };
 
 const $cardContainer: ViewStyle = {
-  borderRadius: spacing.xs,
   padding: spacing.xs,
 };
 
