@@ -118,7 +118,7 @@ export function Button(props: ButtonProps) {
 
   return (
     <Pressable
-      // style={$finalStyle}
+      style={style}
       android_disableSound={true}
       hitSlop={spacing.sm}
       accessibilityRole="button"
@@ -128,10 +128,6 @@ export function Button(props: ButtonProps) {
     </Pressable>
   );
 }
-
-const $baseContainer: ViewStyle = {
-  alignItems: "center",
-};
 
 const $optionContainerBase: ViewStyle = {
   padding: spacing.xs,

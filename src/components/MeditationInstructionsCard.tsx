@@ -80,6 +80,7 @@ const $meditationDescription: TextStyle = {
 };
 
 const $buttonOverride: ViewStyle = {
-  marginTop: spacing.xs,
+  marginTop: spacing.sm,
   width: "100%",
+  alignItems: "center",
 };

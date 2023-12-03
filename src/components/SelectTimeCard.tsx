@@ -1,6 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import React, { useCallback, useMemo } from "react";
-import { Text, TextStyle } from "react-native";
+import { Text, TextStyle, View } from "react-native";
 import {
   useMeditationSettingsDispatch,
   useMeditationSettingsState,
@@ -47,8 +47,9 @@ export function SelectTimeCard() {
   );
 
   return (
-    <Card title={translate("general.selectTime")}>
-      <Text style={[$hint, $textColor]}>
+    <Card title={translate("general.time")}>
+      {/* Main time selector */}
+      <Text style={[$unitHint, $textColor]}>
         {`${translate("general.hours")} : ${translate("general.minutes")}`}
       </Text>
       <Text style={[$time, $textColor]}>{formattedTime}</Text>
@@ -57,11 +58,15 @@ export function SelectTimeCard() {
         setSelectedNumber={setSelectedTime}
         maxNumberSelectable={MAX_TIME_HOURS * MINS_IN_HOUR}
       />
-      <Text style={[$hint, $textColor]}>{translate("general.seconds")}</Text>
+
+      {/* Pre-bell time selector */}
+      <Text style={[$preTimeTextBase, $unitHint, $textColor]}>
+        {translate("general.preStartHint")}
+      </Text>
       <OptionSelectGroup
         options={[
           { text: "5", value: 1 },
-          { text: "10", value: 1 },
+          { text: "15", value: 1 },
           { text: "30", value: 1 },
           { text: "60", value: 2 },
         ]}
@@ -76,7 +81,11 @@ const $time: TextStyle = {
   marginBottom: spacing.md,
 };
 
-const $hint: TextStyle = {
+const $preTimeTextBase: TextStyle = {
+  marginTop: spacing.lg,
+};
+
+const $unitHint: TextStyle = {
   ...textStyle.cardSubTitle,
   fontSize: fontSize.md,
 };
