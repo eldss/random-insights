@@ -4,15 +4,9 @@ import { PersistentStateProvider } from "../PersistentStateProvider";
 import { DEFAULT_MEDITATION_SETTINGS_STATE } from "../../hooks";
 
 describe("<SelectTimeCard />", () => {
-  const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   let contextState = { ...DEFAULT_MEDITATION_SETTINGS_STATE };
   beforeEach(() => {
-    jest.useFakeTimers();
     contextState = { ...DEFAULT_MEDITATION_SETTINGS_STATE };
-  });
-
-  afterEach(() => {
-    jest.useRealTimers();
   });
 
   afterAll(() => {
@@ -25,7 +19,7 @@ describe("<SelectTimeCard />", () => {
         <SelectTimeCard />
       </PersistentStateProvider>,
     );
-    const component = screen.getByText("Select Time");
+    const component = screen.getByText("Time");
     const helperText = screen.getByText("Hours : Minutes");
     const numberLine = screen.getByTestId("number-line-selector");
     expect(component).toBeVisible();

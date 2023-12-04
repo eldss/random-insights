@@ -46,6 +46,16 @@ export function SelectTimeCard() {
     [dispatch],
   );
 
+  const setPreTimeIndex = useCallback(
+    (index: number) => {
+      dispatch({
+        type: ActionType.UPDATE_PRE_START_TIME,
+        payload: { preTimeIndex: index },
+      });
+    },
+    [dispatch],
+  );
+
   return (
     <Card title={translate("general.time")}>
       {/* Main time selector */}
@@ -65,12 +75,13 @@ export function SelectTimeCard() {
       </Text>
       <OptionSelectGroup
         options={[
-          { text: "5", value: 1 },
-          { text: "15", value: 1 },
-          { text: "30", value: 1 },
-          { text: "60", value: 2 },
+          { text: "5", value: 5 },
+          { text: "15", value: 15 },
+          { text: "30", value: 30 },
+          { text: "60", value: 60 },
         ]}
-        selectedIndex={0}
+        selectedIndex={timeSelector.selectedPreTimeIndex}
+        setSelectedIndex={setPreTimeIndex}
       />
     </Card>
   );

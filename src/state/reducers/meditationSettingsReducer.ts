@@ -12,6 +12,8 @@ export interface MeditationSettingsPersistentState {
   timeSelector: {
     /** Time selected for the meditation session, in minutes. */
     selectedTimeMinutes: number;
+    /** Index of the option selected for pre-start time. */
+    selectedPreTimeIndex: number;
   };
 }
 
@@ -20,11 +22,16 @@ export enum ActionType {
   OPEN_INSTRUCTIONS,
   CLOSE_INSTRUCTIONS,
   UPDATE_TIME,
+  UPDATE_PRE_START_TIME,
 }
 
-// Might OR objects so not an interface.
-/** Possible reducer payload types on the meditation settings screen. */
-export type ActionPayload = { timeMinutes: number };
+/** Possible reducer payload options on the meditation settings screen. */
+export type ActionPayload = {
+  // I would like a more type safe way of doing this but other solutions seem too
+  // convoluted and confusing for a simple app.
+  timeMinutes?: number;
+  preTimeIndex?: number;
+};
 
 /** Required reducer action shape. */
 export interface Action {
@@ -49,6 +56,10 @@ export function meditationSettingsReducer(
 
     case ActionType.UPDATE_TIME:
       next.timeSelector.selectedTimeMinutes = action.payload.timeMinutes;
+      return next;
+
+    case ActionType.UPDATE_PRE_START_TIME:
+      next.timeSelector.selectedPreTimeIndex = action.payload.preTimeIndex;
       return next;
   }
 }

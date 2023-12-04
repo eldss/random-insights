@@ -20,6 +20,7 @@ export const DEFAULT_MEDITATION_SETTINGS_STATE: MeditationSettingsPersistentStat
     },
     timeSelector: {
       selectedTimeMinutes: 20,
+      selectedPreTimeIndex: 0,
     },
   };
 

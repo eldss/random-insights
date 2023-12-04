@@ -1,15 +1,17 @@
 import { render, screen } from "@testing-library/react-native";
 import { Text } from "react-native";
 import { PersistentStateProvider } from "../PersistentStateProvider";
+import { MeditationSettingsPersistentState } from "../../state";
 
 describe("<PersistentStateProvider />", () => {
   test("Component can render", () => {
-    const initialState = {
+    const initialState: MeditationSettingsPersistentState = {
       instructions: {
         isOpen: true,
       },
       timeSelector: {
         selectedTimeMinutes: 20,
+        selectedPreTimeIndex: 0,
       },
     };
     render(

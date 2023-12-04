@@ -1,10 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { Image, ImageStyle, Platform, View } from "react-native";
 import { useTranslations } from "../hooks";
 import { MeditationSettingsScreen } from "../screens";
-import { MONK_ROBES, colors, spacing } from "../theme";
+import { MONK_ROBES } from "../theme";
 
 const Stack = createNativeStackNavigator();
 
