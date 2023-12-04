@@ -26,7 +26,7 @@ const MAX_OFFSET = 0;
 const SVG_HEIGHT = 60;
 // Coordinate values for the number line vertical lines
 const LINE_SPACING = 15;
-const LINE_WIDTH = 1;
+const LINE_WIDTH = 2;
 const MOD_TEN_LINE_START_Y = 0;
 const MOD_FIVE_LINE_START_Y = SVG_HEIGHT * 0.2;
 const DEFAULT_LINE_START_Y = SVG_HEIGHT * 0.5;
