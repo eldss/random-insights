@@ -1,10 +1,10 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { renderHook, waitFor } from "@testing-library/react-native";
 import {
   DEFAULT_MEDITATION_SETTINGS_STATE,
   persistMeditationSettings,
   useMeditationSettingsStoredState,
 } from "../useMeditationSettingsPersistentState";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 describe("useMeditationStoredState Hook", () => {
   test("Returns null initially while awaiting data", () => {
