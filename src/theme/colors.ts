@@ -24,12 +24,12 @@ const robes = {
 export const MONK_ROBES: Theme = {
   dark: true,
   colors: {
-    primary: robes.yellow,
+    primary: robes.red,
     background: robes.darkRed,
     card: robes.red,
     text: neutral.gray100,
     border: robes.yellow,
-    notification: robes.orange,
+    notification: robes.yellow,
   },
 };
 

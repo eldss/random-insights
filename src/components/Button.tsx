@@ -96,7 +96,7 @@ export function Button(props: ButtonProps) {
         const $viewColor: ViewStyle = selectOptionProps.isSelected
           ? {
               borderColor: theme.colors.border,
-              backgroundColor: theme.colors.primary,
+              backgroundColor: theme.colors.notification,
             }
           : {
               borderColor: theme.colors.border,
