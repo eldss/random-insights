@@ -4,9 +4,16 @@ import { PersistentStateProvider } from "../PersistentStateProvider";
 import { DEFAULT_MEDITATION_SETTINGS_STATE } from "../../hooks";
 
 describe("<SelectTimeCard />", () => {
+  const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
   let contextState = { ...DEFAULT_MEDITATION_SETTINGS_STATE };
+
   beforeEach(() => {
+    jest.useFakeTimers();
     contextState = { ...DEFAULT_MEDITATION_SETTINGS_STATE };
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
   });
 
   afterAll(() => {
@@ -22,9 +29,11 @@ describe("<SelectTimeCard />", () => {
     const component = screen.getByText("Time");
     const helperText = screen.getByText("Hours : Minutes");
     const numberLine = screen.getByTestId("number-line-selector");
+    const preStart = screen.getByText("Seconds before start bell:");
     expect(component).toBeVisible();
     expect(helperText).toBeVisible();
     expect(numberLine).toBeVisible();
+    expect(preStart).toBeVisible();
   });
 
   test.each([
@@ -44,5 +53,23 @@ describe("<SelectTimeCard />", () => {
     );
     const time = screen.getByText(formatted);
     expect(time).toBeVisible();
+  });
+
+  test("User can view pre-start time buttons and click them without error", async () => {
+    render(
+      <PersistentStateProvider initialMedSettingsState={contextState}>
+        <SelectTimeCard />
+      </PersistentStateProvider>,
+    );
+
+    const btns = screen.getAllByRole("button");
+    expect(btns).toHaveLength(4);
+
+    // I don't know a good way to check this changes, but I can at least check
+    // that it doesn't crash or error.
+    await user.press(btns[1]);
+    await user.press(btns[2]);
+    await user.press(btns[3]);
+    await user.press(btns[0]);
   });
 });

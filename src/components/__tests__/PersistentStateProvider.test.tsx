@@ -11,7 +11,7 @@ describe("<PersistentStateProvider />", () => {
       },
       timeSelector: {
         selectedTimeMinutes: 20,
-        selectedPreTimeIndex: 0,
+        selectedPreTimeSeconds: 5,
       },
     };
     render(

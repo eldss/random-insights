@@ -12,8 +12,8 @@ export interface MeditationSettingsPersistentState {
   timeSelector: {
     /** Time selected for the meditation session, in minutes. */
     selectedTimeMinutes: number;
-    /** Index of the option selected for pre-start time. */
-    selectedPreTimeIndex: number;
+    /** Selection for the pre-start bell time, in seconds. */
+    selectedPreTimeSeconds: number;
   };
 }
 
@@ -30,7 +30,7 @@ export type ActionPayload = {
   // I would like a more type safe way of doing this but other solutions seem too
   // convoluted and confusing for a simple app.
   timeMinutes?: number;
-  preTimeIndex?: number;
+  preTimeSeconds?: number;
 };
 
 /** Required reducer action shape. */
@@ -59,7 +59,7 @@ export function meditationSettingsReducer(
       return next;
 
     case ActionType.UPDATE_PRE_START_TIME:
-      next.timeSelector.selectedPreTimeIndex = action.payload.preTimeIndex;
+      next.timeSelector.selectedPreTimeSeconds = action.payload.preTimeSeconds;
       return next;
   }
 }

@@ -12,7 +12,7 @@ describe("meditationSettingsReducer tests", () => {
     },
     timeSelector: {
       selectedTimeMinutes: 20,
-      selectedPreTimeIndex: 0,
+      selectedPreTimeSeconds: 5,
     },
   };
   let startState: MeditationSettingsPersistentState;
@@ -57,10 +57,10 @@ describe("meditationSettingsReducer tests", () => {
     const action: Action = {
       type: ActionType.UPDATE_PRE_START_TIME,
       payload: {
-        preTimeIndex: 1,
+        preTimeSeconds: 30,
       },
     };
-    expectedState.timeSelector.selectedPreTimeIndex = 1;
+    expectedState.timeSelector.selectedPreTimeSeconds = 30;
     nextState = meditationSettingsReducer(startState, action);
     expect(nextState).toEqual(expectedState);
   });

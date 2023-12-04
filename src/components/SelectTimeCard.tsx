@@ -1,6 +1,6 @@
 import { useTheme } from "@react-navigation/native";
-import React, { useCallback, useMemo } from "react";
-import { Text, TextStyle, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { Text, TextStyle } from "react-native";
 import {
   useMeditationSettingsDispatch,
   useMeditationSettingsState,
@@ -14,8 +14,18 @@ import { OptionSelectGroup } from "./OptionSelectGroup";
 
 const MINS_IN_HOUR = 60;
 const MAX_TIME_HOURS = 3;
+const PRE_BELL_TIME_OPTIONS = [
+  { text: "5", value: 5 },
+  { text: "15", value: 15 },
+  { text: "30", value: 30 },
+  { text: "60", value: 60 },
+];
 
+/**
+ * A card that allows the user to select a time period to meditate for.
+ */
 export function SelectTimeCard() {
+  const [preTimeIndex, setPreTimeIndex] = useState(null);
   const { timeSelector } = useMeditationSettingsState();
   const dispatch = useMeditationSettingsDispatch();
   const translate = useTranslations();
@@ -27,6 +37,19 @@ export function SelectTimeCard() {
     [theme],
   );
 
+  // Maps saved pre-time seconds to the index of the value for the options grouping
+  useEffect(() => {
+    const index = PRE_BELL_TIME_OPTIONS.findIndex(
+      (option) => option.value === timeSelector.selectedPreTimeSeconds,
+    );
+
+    if (index < 0) {
+      setPreTimeIndex(0);
+    } else {
+      setPreTimeIndex(index);
+    }
+  }, []);
+
   // Time displayed with hours in a digital clock format
   const formattedTime = useMemo(() => {
     const selectedTime = timeSelector.selectedTimeMinutes;
@@ -36,6 +59,7 @@ export function SelectTimeCard() {
     return `0${hours}:${isMinsOneDigit ? "0" : ""}${mins}`;
   }, [timeSelector.selectedTimeMinutes]);
 
+  // Sets main meditation time
   const setSelectedTime = useCallback(
     (time: number) => {
       dispatch({
@@ -46,11 +70,14 @@ export function SelectTimeCard() {
     [dispatch],
   );
 
-  const setPreTimeIndex = useCallback(
+  // Sets pre-time option selected index as well as setting the actual seconds
+  // value in app state
+  const setPreTimeIndexAndSecs = useCallback(
     (index: number) => {
+      setPreTimeIndex(index);
       dispatch({
         type: ActionType.UPDATE_PRE_START_TIME,
-        payload: { preTimeIndex: index },
+        payload: { preTimeSeconds: PRE_BELL_TIME_OPTIONS[index].value },
       });
     },
     [dispatch],
@@ -74,14 +101,9 @@ export function SelectTimeCard() {
         {translate("general.preStartHint")}
       </Text>
       <OptionSelectGroup
-        options={[
-          { text: "5", value: 5 },
-          { text: "15", value: 15 },
-          { text: "30", value: 30 },
-          { text: "60", value: 60 },
-        ]}
-        selectedIndex={timeSelector.selectedPreTimeIndex}
-        setSelectedIndex={setPreTimeIndex}
+        options={PRE_BELL_TIME_OPTIONS}
+        selectedIndex={preTimeIndex}
+        setSelectedIndex={setPreTimeIndexAndSecs}
       />
     </Card>
   );
