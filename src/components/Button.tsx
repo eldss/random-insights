@@ -102,7 +102,7 @@ export function Button(props: ButtonProps) {
               borderColor: theme.colors.border,
             };
         const $textColor: TextStyle = selectOptionProps.isSelected
-          ? { color: theme.colors.background }
+          ? { color: theme.dark ? theme.colors.background : theme.colors.card }
           : { color: theme.colors.border };
         return (
           <View style={[$optionContainerBase, $viewColor]}>

@@ -14,11 +14,55 @@ const neutral = {
   black: "#000000",
 };
 
+const whiteLotus = {
+  white: "#EFF1F5",
+  gray: neutral.gray100,
+  gold: "#BD6C00",
+  blue: "#005284",
+  green: "#006833",
+};
+
 const robes = {
   red: "#990113",
   darkRed: "#350000",
   orange: "#EA751F",
   yellow: "#E3AC26",
+};
+
+export const WHITE_LOTUS_GOLD: Theme = {
+  dark: false,
+  colors: {
+    primary: whiteLotus.white,
+    background: whiteLotus.gray,
+    card: whiteLotus.white,
+    text: neutral.black,
+    border: whiteLotus.gold,
+    notification: whiteLotus.gold,
+  },
+};
+
+export const WHITE_LOTUS_BLUE: Theme = {
+  dark: false,
+  colors: {
+    primary: whiteLotus.white,
+    background: whiteLotus.gray,
+    card: whiteLotus.white,
+    text: neutral.black,
+    border: whiteLotus.blue,
+    notification: whiteLotus.blue,
+  },
+};
+
+export const WHITE_LOTUS_GREEN: Theme = {
+  dark: false,
+  colors: {
+    primary: whiteLotus.white,
+    background: whiteLotus.gray,
+    card: whiteLotus.white,
+    text: neutral.black,
+    border: whiteLotus.green,
+    notification: whiteLotus.green,
+  },
 };
 
 export const MONK_ROBES: Theme = {

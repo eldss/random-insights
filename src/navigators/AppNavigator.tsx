@@ -3,18 +3,19 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { useTranslations } from "../hooks";
 import { MeditationSettingsScreen } from "../screens";
-import { MONK_ROBES } from "../theme";
+import { MONK_ROBES, WHITE_LOTUS_GOLD } from "../theme";
 
 const Stack = createNativeStackNavigator();
 
 export function AppNavigator() {
   const translate = useTranslations();
   return (
-    <NavigationContainer theme={MONK_ROBES}>
+    <NavigationContainer theme={WHITE_LOTUS_GOLD}>
       <Stack.Navigator
         screenOptions={{
           title: translate("general.appName"),
           headerBackVisible: true,
+          headerTitleStyle: { color: WHITE_LOTUS_GOLD.colors.notification },
         }}
       >
         <Stack.Screen
