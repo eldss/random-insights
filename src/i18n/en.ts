@@ -1,6 +1,7 @@
 const en = {
   general: {
     appName: "Random Insights",
+    settings: "Settings",
     logoAltText: "Lotus Icon",
     instructions: "Instructions",
     time: "Time",

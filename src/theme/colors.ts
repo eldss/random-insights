@@ -32,7 +32,7 @@ const robes = {
 export const WHITE_LOTUS_GOLD: Theme = {
   dark: false,
   colors: {
-    primary: whiteLotus.white,
+    primary: whiteLotus.gold,
     background: whiteLotus.gray,
     card: whiteLotus.white,
     text: neutral.black,
@@ -44,7 +44,7 @@ export const WHITE_LOTUS_GOLD: Theme = {
 export const WHITE_LOTUS_BLUE: Theme = {
   dark: false,
   colors: {
-    primary: whiteLotus.white,
+    primary: whiteLotus.blue,
     background: whiteLotus.gray,
     card: whiteLotus.white,
     text: neutral.black,
@@ -56,7 +56,7 @@ export const WHITE_LOTUS_BLUE: Theme = {
 export const WHITE_LOTUS_GREEN: Theme = {
   dark: false,
   colors: {
-    primary: whiteLotus.white,
+    primary: whiteLotus.green,
     background: whiteLotus.gray,
     card: whiteLotus.white,
     text: neutral.black,
@@ -68,7 +68,7 @@ export const WHITE_LOTUS_GREEN: Theme = {
 export const MONK_ROBES: Theme = {
   dark: true,
   colors: {
-    primary: robes.red,
+    primary: robes.yellow,
     background: robes.darkRed,
     card: robes.red,
     text: neutral.gray100,

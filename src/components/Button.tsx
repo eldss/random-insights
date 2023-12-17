@@ -1,4 +1,4 @@
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { AntDesign, Feather, Ionicons } from "@expo/vector-icons";
 import React, { ReactNode, useMemo } from "react";
 import {
   Pressable,
@@ -12,7 +12,11 @@ import {
 import { fontSize, spacing } from "../theme";
 import { useTheme } from "@react-navigation/native";
 
-export type ButtonPreset = "refresh" | "collapsible" | "selectOption";
+export type ButtonPreset =
+  | "refresh"
+  | "settings"
+  | "collapsible"
+  | "selectOption";
 
 export interface ButtonProps extends PressableProps {
   /**
@@ -84,6 +88,18 @@ export function Button(props: ButtonProps) {
             }
           />
         );
+      case "settings":
+        return (
+          <Ionicons
+            name="settings-sharp"
+            size={fontSize.lg}
+            color={
+              pressed
+                ? theme.colors.text + SIXTY_FIVE_PERCENT_OPACITY_HEX
+                : theme.colors.text
+            }
+          />
+        );
       case "collapsible":
         return (
           <AntDesign
@@ -96,7 +112,7 @@ export function Button(props: ButtonProps) {
         const $viewColor: ViewStyle = selectOptionProps.isSelected
           ? {
               borderColor: theme.colors.border,
-              backgroundColor: theme.colors.notification,
+              backgroundColor: theme.colors.primary,
             }
           : {
               borderColor: theme.colors.border,

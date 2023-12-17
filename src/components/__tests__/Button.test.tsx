@@ -33,14 +33,32 @@ describe("<Button />", () => {
     expect(text).not.toBeOnTheScreen();
   });
 
-  test("Button calls onPress when pressed", async () => {
-    const fn = jest.fn();
-    render(<Button preset="refresh" onPress={fn} />);
+  test.each([
+    { preset: "refresh" },
+    { preset: "settings" },
+    { preset: "collapsible" },
+    { preset: "selectOption" },
+  ])(
+    `Button with preset $preset calls onPress when pressed`,
+    async ({ preset }) => {
+      const fn = jest.fn();
+      if (preset === "selectOption") {
+        render(
+          <Button
+            preset={preset as ButtonPreset}
+            onPress={fn}
+            selectOptionProps={{ isSelected: true, text: "Foo" }}
+          />,
+        );
+      } else {
+        render(<Button preset={preset as ButtonPreset} onPress={fn} />);
+      }
 
-    const button = screen.getByRole("button");
-    await user.press(button);
-    expect(fn).toHaveBeenCalledTimes(1);
-  });
+      const button = screen.getByRole("button");
+      await user.press(button);
+      expect(fn).toHaveBeenCalledTimes(1);
+    },
+  );
 
   test("Collapsible button faces right when closed", () => {
     render(
@@ -56,6 +74,12 @@ describe("<Button />", () => {
     const button = screen.getByRole("button");
     // Child is Icon
     expect(button.children[0]).toHaveProp("name", "down");
+  });
+
+  test("Settings button renders", () => {
+    render(<Button preset="settings" />);
+    const button = screen.getByRole("button");
+    expect(button.children[0]).toHaveProp("name", "settings-sharp");
   });
 
   test("selectOption button renders text given to it, when selected", () => {
