@@ -79,8 +79,11 @@ export const MONK_ROBES: Theme = {
 
 export type AppTheme = { id: string; theme: Theme };
 
+// First element is default
 export const THEMES: AppTheme[] = [
-  // First element is default
+  /*
+    Light Themes
+   */
   {
     id: "WhiteGold",
     theme: WHITE_GOLD,
@@ -93,6 +96,9 @@ export const THEMES: AppTheme[] = [
     id: "WhiteGreen",
     theme: WHITE_GREEN,
   },
+  /*
+    Dark Themes
+   */
   {
     id: "MonkRobes",
     theme: MONK_ROBES,
