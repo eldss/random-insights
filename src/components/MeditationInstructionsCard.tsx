@@ -6,7 +6,7 @@ import {
   useTranslations,
 } from "../hooks";
 import { MEDITATIONS, Meditation, getRandomMeditation } from "../meditations";
-import { ActionType } from "../state";
+import { MedSettingsActionType } from "../state";
 import { fontSize, spacing, textStyle } from "../theme";
 import { Button } from "./Button";
 import { Card } from "./Card";
@@ -36,9 +36,9 @@ export function MeditationInstructionsCard() {
   const setIsOpen = useCallback(
     (nextIsOpen: boolean) => {
       if (nextIsOpen) {
-        dispatch({ type: ActionType.OPEN_INSTRUCTIONS });
+        dispatch({ type: MedSettingsActionType.OPEN_INSTRUCTIONS });
       } else {
-        dispatch({ type: ActionType.CLOSE_INSTRUCTIONS });
+        dispatch({ type: MedSettingsActionType.CLOSE_INSTRUCTIONS });
       }
     },
     [dispatch],

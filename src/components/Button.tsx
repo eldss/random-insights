@@ -86,6 +86,7 @@ export function Button(props: ButtonProps) {
                 ? theme.colors.text + SIXTY_FIVE_PERCENT_OPACITY_HEX
                 : theme.colors.text
             }
+            testID="refresh-btn"
           />
         );
       case "settings":
@@ -98,6 +99,7 @@ export function Button(props: ButtonProps) {
                 ? theme.colors.text + SIXTY_FIVE_PERCENT_OPACITY_HEX
                 : theme.colors.text
             }
+            testID="settings-btn"
           />
         );
       case "collapsible":
@@ -106,6 +108,7 @@ export function Button(props: ButtonProps) {
             name={collapsibleProps.isOpen ? "down" : "right"}
             size={fontSize.mdLg}
             color={theme.colors.text}
+            testID="collapsible-btn"
           />
         );
       case "selectOption":

@@ -1,10 +1,11 @@
-import { View, Text } from "react-native";
 import React from "react";
+import { ThemeCard } from "../components/ThemeCard";
+import { ScreenBase } from "./ScreenBase";
 
 export function AppSettingsScreen() {
   return (
-    <View>
-      <Text>SettingsScreen</Text>
-    </View>
+    <ScreenBase>
+      <ThemeCard />
+    </ScreenBase>
   );
 }

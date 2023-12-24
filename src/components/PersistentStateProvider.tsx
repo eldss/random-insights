@@ -1,14 +1,20 @@
 import React, { ReactNode, useReducer } from "react";
 import {
+  AppSettingsContext,
+  AppSettingsDispatchContext,
+  AppTheme,
   MeditationSettingsContext,
   MeditationSettingsDispatchContext,
   MeditationSettingsPersistentState,
+  appSettingsReducer,
   meditationSettingsReducer,
 } from "../state";
 
 export interface PersistentStateProviderProps {
   /** Initial settings for the meditation settings screen. */
   initialMedSettingsState: MeditationSettingsPersistentState;
+  /** Initial settings for the app settings screen. */
+  initialAppSettingsState: AppTheme;
   /** Children to render (the app). */
   children: ReactNode;
 }
@@ -19,6 +25,7 @@ export interface PersistentStateProviderProps {
  */
 export function PersistentStateProvider({
   initialMedSettingsState,
+  initialAppSettingsState,
   children,
 }: PersistentStateProviderProps) {
   const [medSettings, medSettingsDispatch] = useReducer(
@@ -26,10 +33,19 @@ export function PersistentStateProvider({
     initialMedSettingsState,
   );
 
+  const [appSettings, appSettingsDispatch] = useReducer(
+    appSettingsReducer,
+    initialAppSettingsState,
+  );
+
   return (
     <MeditationSettingsContext.Provider value={medSettings}>
       <MeditationSettingsDispatchContext.Provider value={medSettingsDispatch}>
-        {children}
+        <AppSettingsContext.Provider value={appSettings}>
+          <AppSettingsDispatchContext.Provider value={appSettingsDispatch}>
+            {children}
+          </AppSettingsDispatchContext.Provider>
+        </AppSettingsContext.Provider>
       </MeditationSettingsDispatchContext.Provider>
     </MeditationSettingsContext.Provider>
   );

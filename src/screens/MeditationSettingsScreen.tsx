@@ -1,14 +1,7 @@
 import { useTheme } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { StatusBar } from "expo-status-bar";
 import React, { useLayoutEffect } from "react";
-import {
-  Button as ReactButton,
-  SafeAreaView,
-  ScrollView,
-  View,
-  ViewStyle,
-} from "react-native";
+import { Button as ReactButton, ViewStyle } from "react-native";
 import {
   Button,
   MeditationInstructionsCard,
@@ -21,6 +14,7 @@ import {
 import { ScreenNames } from "../navigators/constants";
 import { RootStackParamList } from "../navigators/types";
 import { spacing } from "../theme";
+import { ScreenBase } from "./ScreenBase";
 
 type Props = NativeStackScreenProps<
   RootStackParamList,
@@ -53,20 +47,15 @@ export function MeditationSettingsScreen({ navigation }: Props) {
   }, [navigation]);
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <StatusBar style={theme.dark ? "light" : "dark"} />
-        <View style={$container}>
-          <MeditationInstructionsCard />
-          <SelectTimeCard />
-          <ReactButton
-            title="Save State"
-            onPress={() => persistMeditationSettings(state)}
-            color={theme.colors.primary}
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <ScreenBase>
+      <MeditationInstructionsCard />
+      <SelectTimeCard />
+      <ReactButton
+        title="Save State"
+        onPress={() => persistMeditationSettings(state)}
+        color={theme.colors.primary}
+      />
+    </ScreenBase>
   );
 }
 

@@ -4,30 +4,37 @@ import { StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { PersistentStateProvider } from "./src/components";
-import { useMeditationSettingsStoredState } from "./src/hooks";
+import {
+  useAppSettingsStoredState,
+  useMeditationSettingsStoredState,
+} from "./src/hooks";
 import { AppNavigator } from "./src/navigators";
 
 // Keep the splash screen visible while we fetch stored state
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const storedState = useMeditationSettingsStoredState();
+  const storedMedState = useMeditationSettingsStoredState();
+  const storedAppState = useAppSettingsStoredState();
 
   const onLayoutRootView = useCallback(async () => {
-    if (storedState) {
+    if (storedMedState && storedAppState) {
       // This tells the splash screen to hide immediately!
       // Hide the splash screen once we know the root view has already performed layout.
       await SplashScreen.hideAsync();
     }
-  }, [storedState]);
+  }, [storedMedState, storedAppState]);
 
   // Don't return anything till state is ready
-  if (!storedState) {
+  if (!storedMedState || !storedAppState) {
     return null;
   }
 
   return (
-    <PersistentStateProvider initialMedSettingsState={storedState}>
+    <PersistentStateProvider
+      initialMedSettingsState={storedMedState}
+      initialAppSettingsState={storedAppState}
+    >
       <SafeAreaProvider>
         <GestureHandlerRootView
           style={styles.container}

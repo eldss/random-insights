@@ -1,6 +1,6 @@
 import {
-  Action,
-  ActionType,
+  MedSettingsAction,
+  MedSettingsActionType,
   MeditationSettingsPersistentState,
   meditationSettingsReducer,
 } from "../meditationSettingsReducer";
@@ -30,20 +30,22 @@ describe("meditationSettingsReducer tests", () => {
   });
 
   test("Can close and open the instructions card", () => {
-    const action: Action = { type: ActionType.CLOSE_INSTRUCTIONS };
+    const action: MedSettingsAction = {
+      type: MedSettingsActionType.CLOSE_INSTRUCTIONS,
+    };
     expectedState.instructions.isOpen = false;
     nextState = meditationSettingsReducer(startState, action);
     expect(nextState).toEqual(expectedState);
 
-    action.type = ActionType.OPEN_INSTRUCTIONS;
+    action.type = MedSettingsActionType.OPEN_INSTRUCTIONS;
     expectedState.instructions.isOpen = true;
     nextState = meditationSettingsReducer(nextState, action);
     expect(startState).toEqual(expectedState);
   });
 
   test("Can set a new time", () => {
-    const action: Action = {
-      type: ActionType.UPDATE_TIME,
+    const action: MedSettingsAction = {
+      type: MedSettingsActionType.UPDATE_TIME,
       payload: {
         timeMinutes: 30,
       },
@@ -54,8 +56,8 @@ describe("meditationSettingsReducer tests", () => {
   });
 
   test("Can set a new pre-time index", () => {
-    const action: Action = {
-      type: ActionType.UPDATE_PRE_START_TIME,
+    const action: MedSettingsAction = {
+      type: MedSettingsActionType.UPDATE_PRE_START_TIME,
       payload: {
         preTimeSeconds: 30,
       },

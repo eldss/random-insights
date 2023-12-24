@@ -6,7 +6,7 @@ import {
   useMeditationSettingsState,
   useTranslations,
 } from "../hooks";
-import { ActionType } from "../state";
+import { MedSettingsActionType } from "../state";
 import { fontSize, spacing, textStyle } from "../theme";
 import { Card } from "./Card";
 import { NumberLineSelector } from "./NumberLineSelector";
@@ -63,7 +63,7 @@ export function SelectTimeCard() {
   const setSelectedTime = useCallback(
     (time: number) => {
       dispatch({
-        type: ActionType.UPDATE_TIME,
+        type: MedSettingsActionType.UPDATE_TIME,
         payload: { timeMinutes: time },
       });
     },
@@ -76,7 +76,7 @@ export function SelectTimeCard() {
     (index: number) => {
       setPreTimeIndex(index);
       dispatch({
-        type: ActionType.UPDATE_PRE_START_TIME,
+        type: MedSettingsActionType.UPDATE_PRE_START_TIME,
         payload: { preTimeSeconds: PRE_BELL_TIME_OPTIONS[index].value },
       });
     },

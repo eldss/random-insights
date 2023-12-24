@@ -1,5 +1,8 @@
 import { Context, Dispatch, createContext } from "react";
-import { Action, MeditationSettingsPersistentState } from "../reducers";
+import {
+  MedSettingsAction,
+  MeditationSettingsPersistentState,
+} from "../reducers/meditationSettingsReducer";
 
 /**
  * Context for persistent state on the meditation settings screen.
@@ -10,5 +13,6 @@ export const MeditationSettingsContext: Context<MeditationSettingsPersistentStat
 /**
  * Context for setting persistent state on the meditation settings screen.
  */
-export const MeditationSettingsDispatchContext: Context<Dispatch<Action>> =
-  createContext(null);
+export const MeditationSettingsDispatchContext: Context<
+  Dispatch<MedSettingsAction>
+> = createContext(null);

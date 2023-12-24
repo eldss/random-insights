@@ -1,15 +1,20 @@
 import { render, screen, userEvent } from "@testing-library/react-native";
 import { SelectTimeCard } from "../SelectTimeCard";
 import { PersistentStateProvider } from "../PersistentStateProvider";
-import { DEFAULT_MEDITATION_SETTINGS_STATE } from "../../hooks";
+import {
+  DEFAULT_APP_SETTINGS_STATE,
+  DEFAULT_MEDITATION_SETTINGS_STATE,
+} from "../../hooks";
 
 describe("<SelectTimeCard />", () => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-  let contextState = { ...DEFAULT_MEDITATION_SETTINGS_STATE };
+  let contextMedState = { ...DEFAULT_MEDITATION_SETTINGS_STATE };
+  let contextAppState = { ...DEFAULT_APP_SETTINGS_STATE };
 
   beforeEach(() => {
     jest.useFakeTimers();
-    contextState = { ...DEFAULT_MEDITATION_SETTINGS_STATE };
+    contextMedState = { ...DEFAULT_MEDITATION_SETTINGS_STATE };
+    contextAppState = { ...DEFAULT_APP_SETTINGS_STATE };
   });
 
   afterEach(() => {
@@ -22,7 +27,10 @@ describe("<SelectTimeCard />", () => {
 
   test("Component renders", () => {
     render(
-      <PersistentStateProvider initialMedSettingsState={contextState}>
+      <PersistentStateProvider
+        initialMedSettingsState={contextMedState}
+        initialAppSettingsState={contextAppState}
+      >
         <SelectTimeCard />
       </PersistentStateProvider>,
     );
@@ -45,9 +53,12 @@ describe("<SelectTimeCard />", () => {
     [150, "02:30"],
     [180, "03:00"],
   ])("Should format the time correctly", (timeMins, formatted) => {
-    contextState.timeSelector.selectedTimeMinutes = timeMins;
+    contextMedState.timeSelector.selectedTimeMinutes = timeMins;
     render(
-      <PersistentStateProvider initialMedSettingsState={contextState}>
+      <PersistentStateProvider
+        initialMedSettingsState={contextMedState}
+        initialAppSettingsState={contextAppState}
+      >
         <SelectTimeCard />
       </PersistentStateProvider>,
     );
@@ -57,7 +68,10 @@ describe("<SelectTimeCard />", () => {
 
   test("User can view pre-start time buttons and click them without error", async () => {
     render(
-      <PersistentStateProvider initialMedSettingsState={contextState}>
+      <PersistentStateProvider
+        initialMedSettingsState={contextMedState}
+        initialAppSettingsState={contextAppState}
+      >
         <SelectTimeCard />
       </PersistentStateProvider>,
     );

@@ -18,8 +18,8 @@ const whiteLotus = {
   white: "#EFF1F5",
   gray: neutral.gray100,
   gold: "#BD6C00",
-  blue: "#005284",
-  green: "#006833",
+  waterBlue: "#005284",
+  leafGreen: "#006833",
 };
 
 const robes = {
@@ -29,7 +29,7 @@ const robes = {
   yellow: "#E3AC26",
 };
 
-export const WHITE_LOTUS_GOLD: Theme = {
+export const WHITE_GOLD: Theme = {
   dark: false,
   colors: {
     primary: whiteLotus.gold,
@@ -41,27 +41,27 @@ export const WHITE_LOTUS_GOLD: Theme = {
   },
 };
 
-export const WHITE_LOTUS_BLUE: Theme = {
+export const WHITE_BLUE: Theme = {
   dark: false,
   colors: {
-    primary: whiteLotus.blue,
+    primary: whiteLotus.waterBlue,
     background: whiteLotus.gray,
     card: whiteLotus.white,
     text: neutral.black,
-    border: whiteLotus.blue,
-    notification: whiteLotus.blue,
+    border: whiteLotus.waterBlue,
+    notification: whiteLotus.waterBlue,
   },
 };
 
-export const WHITE_LOTUS_GREEN: Theme = {
+export const WHITE_GREEN: Theme = {
   dark: false,
   colors: {
-    primary: whiteLotus.green,
+    primary: whiteLotus.leafGreen,
     background: whiteLotus.gray,
     card: whiteLotus.white,
     text: neutral.black,
-    border: whiteLotus.green,
-    notification: whiteLotus.green,
+    border: whiteLotus.leafGreen,
+    notification: whiteLotus.leafGreen,
   },
 };
 
@@ -77,7 +77,24 @@ export const MONK_ROBES: Theme = {
   },
 };
 
-export const colors = {
-  palette: neutral,
-  theme: MONK_ROBES,
-};
+export type AppTheme = { id: string; theme: Theme };
+
+export const THEMES: AppTheme[] = [
+  // First element is default
+  {
+    id: "WhiteGold",
+    theme: WHITE_GOLD,
+  },
+  {
+    id: "WhiteBlue",
+    theme: WHITE_BLUE,
+  },
+  {
+    id: "WhiteGreen",
+    theme: WHITE_GREEN,
+  },
+  {
+    id: "MonkRobes",
+    theme: MONK_ROBES,
+  },
+] as const;

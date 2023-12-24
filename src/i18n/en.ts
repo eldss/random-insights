@@ -9,6 +9,9 @@ const en = {
     hours: "Hours",
     minutes: "Minutes",
     seconds: "Seconds",
+    theme: "Theme",
+    current: "Current",
+    options: "Options",
   },
   meditations: {
     common: {

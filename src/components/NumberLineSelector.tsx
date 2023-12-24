@@ -1,6 +1,7 @@
+import { useTheme } from "@react-navigation/native";
 import lodash from "lodash";
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { TextStyle, View, ViewStyle, useWindowDimensions } from "react-native";
+import { View, ViewStyle, useWindowDimensions } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   cancelAnimation,
@@ -12,8 +13,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import Svg, { G, Line } from "react-native-svg";
-import { colors, timing } from "../theme";
-import { useTheme } from "@react-navigation/native";
+import { timing } from "../theme";
 
 /*
  * Constants for SVG. May put in props in the future if moved to a library or put in

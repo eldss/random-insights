@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react-native";
 import { Text } from "react-native";
 import { PersistentStateProvider } from "../PersistentStateProvider";
-import { MeditationSettingsPersistentState } from "../../state";
+import { AppTheme, MeditationSettingsPersistentState } from "../../state";
 
 describe("<PersistentStateProvider />", () => {
   test("Component can render", () => {
-    const initialState: MeditationSettingsPersistentState = {
+    const initialMedState: MeditationSettingsPersistentState = {
       instructions: {
         isOpen: true,
       },
@@ -14,8 +14,14 @@ describe("<PersistentStateProvider />", () => {
         selectedPreTimeSeconds: 5,
       },
     };
+    const initialAppState: AppTheme = {
+      theme: "MonkRobes",
+    };
     render(
-      <PersistentStateProvider initialMedSettingsState={initialState}>
+      <PersistentStateProvider
+        initialMedSettingsState={initialMedState}
+        initialAppSettingsState={initialAppState}
+      >
         <Text>Foo</Text>
       </PersistentStateProvider>,
     );
