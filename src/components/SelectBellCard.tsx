@@ -1,6 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import React, { useCallback, useMemo, useState } from "react";
-import { Text, TextStyle, View } from "react-native";
+import { Text, TextStyle, View, ViewStyle } from "react-native";
 import {
   useMeditationSettingsDispatch,
   useMeditationSettingsState,
@@ -62,6 +62,7 @@ export function SelectBellCard() {
   const optionButtons = useMemo(() => {
     return options.map((option) => (
       <Button
+        style={$baseButtonView}
         key={option.value}
         preset="selectOption"
         selectOptionProps={{
@@ -75,19 +76,31 @@ export function SelectBellCard() {
 
   return (
     <Card title={translate("general.bells")}>
-      <View style={{ width: "100%" }}>{optionButtons[0]}</View>
+      <View style={$noneView}>{optionButtons[0]}</View>
       <Text style={[textStyle.cardSubTitle, $titleSpacing, $textColor]}>
         {translate("general.bellAt")}
       </Text>
-      {optionButtons.slice(1, 6)}
+      <View style={$atAndEveryView}>{optionButtons.slice(1, 6)}</View>
       <Text style={[textStyle.cardSubTitle, $titleSpacing, $textColor]}>
         {`${translate("general.bellEvery")} (${translate("general.minutes")})`}
       </Text>
-      {optionButtons.slice(6)}
+      <View style={$atAndEveryView}>{optionButtons.slice(6)}</View>
     </Card>
   );
 }
 
 const $titleSpacing: TextStyle = {
   marginTop: spacing.sm,
+};
+
+const $noneView: ViewStyle = {
+  width: "100%",
+};
+
+const $atAndEveryView: ViewStyle = {
+  flexDirection: "row",
+};
+
+const $baseButtonView: ViewStyle = {
+  flex: 1,
 };

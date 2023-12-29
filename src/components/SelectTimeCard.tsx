@@ -115,5 +115,5 @@ const $time: TextStyle = {
 };
 
 const $preTimeTextBase: TextStyle = {
-  marginTop: spacing.lg,
+  marginTop: spacing.md,
 };
