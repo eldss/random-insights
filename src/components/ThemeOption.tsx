@@ -37,7 +37,7 @@ export function ThemeOption({ theme }: ThemeOptionProps) {
   );
 }
 
-const INNER_SQUARE_LEN = 40;
+const INNER_SQUARE_LEN = 30;
 const BORDER_WIDTH = 1;
 
 const $base: ViewStyle = {
