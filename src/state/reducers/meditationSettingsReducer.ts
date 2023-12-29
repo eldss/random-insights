@@ -1,4 +1,19 @@
 /**
+ * Possible values for bells during meditations.
+ */
+export type BellValue =
+  | "None"
+  | "10%"
+  | "25%"
+  | "50%"
+  | "75%"
+  | "90%"
+  | "2mins"
+  | "5mins"
+  | "10mins"
+  | "15mins";
+
+/**
  * High-level state for the meditation settings screen that is persistent through
  * the life of the app session, and between sessions.
  */
@@ -15,6 +30,11 @@ export interface MeditationSettingsPersistentState {
     /** Selection for the pre-start bell time, in seconds. */
     selectedPreTimeSeconds: number;
   };
+  /** State for bell selector card. */
+  bellSelector: {
+    /** Selection for bell options. */
+    bellValue: BellValue;
+  };
 }
 
 /** Possible reducer action types on the meditation settings screen. */
@@ -23,6 +43,7 @@ export enum MedSettingsActionType {
   CLOSE_INSTRUCTIONS,
   UPDATE_TIME,
   UPDATE_PRE_START_TIME,
+  UPDATE_BELL_OPTION,
 }
 
 /** Possible reducer payload options on the meditation settings screen. */
@@ -31,6 +52,7 @@ export type MedSettingsActionPayload = {
   // convoluted and confusing for a simple app.
   timeMinutes?: number;
   preTimeSeconds?: number;
+  bellValue?: BellValue;
 };
 
 /** Required reducer action shape. */
@@ -60,6 +82,10 @@ export function meditationSettingsReducer(
 
     case MedSettingsActionType.UPDATE_PRE_START_TIME:
       next.timeSelector.selectedPreTimeSeconds = action.payload.preTimeSeconds;
+      return next;
+
+    case MedSettingsActionType.UPDATE_BELL_OPTION:
+      next.bellSelector.bellValue = action.payload.bellValue;
       return next;
   }
 }

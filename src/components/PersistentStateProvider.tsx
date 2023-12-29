@@ -2,13 +2,13 @@ import React, { ReactNode, useReducer } from "react";
 import {
   AppSettingsContext,
   AppSettingsDispatchContext,
-  AppTheme,
   MeditationSettingsContext,
   MeditationSettingsDispatchContext,
   MeditationSettingsPersistentState,
   appSettingsReducer,
   meditationSettingsReducer,
 } from "../state";
+import { AppTheme } from "../theme";
 
 export interface PersistentStateProviderProps {
   /** Initial settings for the meditation settings screen. */

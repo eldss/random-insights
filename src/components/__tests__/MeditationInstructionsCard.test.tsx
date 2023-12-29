@@ -2,7 +2,10 @@ import { render, screen, userEvent } from "@testing-library/react-native";
 import { MeditationInstructionsCard } from "../MeditationInstructionsCard";
 import { Meditation } from "../../meditations";
 import { PersistentStateProvider } from "../PersistentStateProvider";
-import { DEFAULT_MEDITATION_SETTINGS_STATE } from "../../hooks";
+import {
+  DEFAULT_APP_SETTINGS_STATE,
+  DEFAULT_MEDITATION_SETTINGS_STATE,
+} from "../../hooks";
 
 // This value is used to decide which meditation to return.
 // I tried other ways to do this from jest docs but I kept getting errors and
@@ -37,6 +40,7 @@ describe("<MeditationInstructionsCard />", () => {
     render(
       <PersistentStateProvider
         initialMedSettingsState={DEFAULT_MEDITATION_SETTINGS_STATE}
+        initialAppSettingsState={DEFAULT_APP_SETTINGS_STATE}
       >
         <MeditationInstructionsCard />
       </PersistentStateProvider>,

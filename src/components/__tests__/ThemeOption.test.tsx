@@ -10,6 +10,10 @@ import { PersistentStateProvider } from "../PersistentStateProvider";
 describe("<ThemeOption />", () => {
   const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
   afterEach(() => {
     jest.useRealTimers();
   });

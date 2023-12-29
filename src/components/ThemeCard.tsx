@@ -67,6 +67,7 @@ const $selectedBase: ViewStyle = {
   height: 40,
   borderWidth: 1,
   marginBottom: spacing.lg,
+  marginTop: spacing.xs,
 };
 
 const $selectedSection: ViewStyle = {

@@ -19,7 +19,7 @@ export const textStyle: Record<string, TextStyle> = {
     textAlign: "center",
   },
   cardSubTitle: {
-    fontSize: fontSize.mdLg,
+    fontSize: fontSize.md,
     fontWeight: "500",
     fontStyle: "italic",
     marginBottom: spacing.xxs,

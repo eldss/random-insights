@@ -5,6 +5,7 @@ import {
   persistMeditationSettings,
   useMeditationSettingsStoredState,
 } from "../useMeditationSettingsPersistentState";
+import { MeditationSettingsPersistentState } from "../../state/reducers";
 
 describe("useMeditationStoredState Hook", () => {
   test("Returns null initially while awaiting data", () => {
@@ -38,29 +39,40 @@ describe("useMeditationStoredState Hook", () => {
       {
         instructions: { isOpen: false },
         timeSelector: { selectedTimeMinutes: 20, selectedPreTimeSeconds: 0 },
+        bellSelector: { bellValue: "None" },
       },
     ],
     [
       {
         instructions: { isOpen: true },
         timeSelector: { selectedTimeMinutes: 25, selectedPreTimeSeconds: 0 },
+        bellSelector: { bellValue: "None" },
       },
     ],
     [
       {
         instructions: { isOpen: true },
         timeSelector: { selectedTimeMinutes: 20, selectedPreTimeSeconds: 1 },
+        bellSelector: { bellValue: "None" },
       },
     ],
     [
       {
         instructions: { isOpen: false },
         timeSelector: { selectedTimeMinutes: 50, selectedPreTimeSeconds: 1 },
+        bellSelector: { bellValue: "None" },
+      },
+    ],
+    [
+      {
+        instructions: { isOpen: false },
+        timeSelector: { selectedTimeMinutes: 20, selectedPreTimeSeconds: 0 },
+        bellSelector: { bellValue: "10%" },
       },
     ],
   ])("Returns exact state that is stored: %o", async (object) => {
     await waitFor(() => {
-      persistMeditationSettings(object);
+      persistMeditationSettings(object as MeditationSettingsPersistentState);
     });
     const { result } = renderHook(() => useMeditationSettingsStoredState());
     await waitFor(() => {

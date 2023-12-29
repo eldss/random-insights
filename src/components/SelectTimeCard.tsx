@@ -7,7 +7,7 @@ import {
   useTranslations,
 } from "../hooks";
 import { MedSettingsActionType } from "../state";
-import { fontSize, spacing, textStyle } from "../theme";
+import { spacing, textStyle } from "../theme";
 import { Card } from "./Card";
 import { NumberLineSelector } from "./NumberLineSelector";
 import { OptionSelectGroup } from "./OptionSelectGroup";
@@ -26,7 +26,7 @@ const PRE_BELL_TIME_OPTIONS = [
  */
 export function SelectTimeCard() {
   const [preTimeIndex, setPreTimeIndex] = useState(null);
-  const { timeSelector } = useMeditationSettingsState();
+  const { timeSelector, bellSelector } = useMeditationSettingsState();
   const dispatch = useMeditationSettingsDispatch();
   const translate = useTranslations();
   const theme = useTheme();
@@ -86,7 +86,7 @@ export function SelectTimeCard() {
   return (
     <Card title={translate("general.time")}>
       {/* Main time selector */}
-      <Text style={[$unitHint, $textColor]}>
+      <Text style={[textStyle.cardSubTitle, $textColor]}>
         {`${translate("general.hours")} : ${translate("general.minutes")}`}
       </Text>
       <Text style={[$time, $textColor]}>{formattedTime}</Text>
@@ -97,7 +97,7 @@ export function SelectTimeCard() {
       />
 
       {/* Pre-bell time selector */}
-      <Text style={[$preTimeTextBase, $unitHint, $textColor]}>
+      <Text style={[$preTimeTextBase, textStyle.cardSubTitle, $textColor]}>
         {translate("general.preStartHint")}
       </Text>
       <OptionSelectGroup
@@ -116,9 +116,4 @@ const $time: TextStyle = {
 
 const $preTimeTextBase: TextStyle = {
   marginTop: spacing.lg,
-};
-
-const $unitHint: TextStyle = {
-  ...textStyle.cardSubTitle,
-  fontSize: fontSize.md,
 };

@@ -5,6 +5,7 @@ import { Button as ReactButton, ViewStyle } from "react-native";
 import {
   Button,
   MeditationInstructionsCard,
+  SelectBellCard,
   SelectTimeCard,
 } from "../components";
 import {
@@ -50,9 +51,13 @@ export function MeditationSettingsScreen({ navigation }: Props) {
     <ScreenBase>
       <MeditationInstructionsCard />
       <SelectTimeCard />
+      <SelectBellCard />
       <ReactButton
         title="Save State"
-        onPress={() => persistMeditationSettings(state)}
+        onPress={() => {
+          persistMeditationSettings(state);
+          console.log(state);
+        }}
         color={theme.colors.primary}
       />
     </ScreenBase>

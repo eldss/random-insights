@@ -1,16 +1,10 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import {
-  useAppSettingsState,
-  useAppSettingsStoredState,
-  useTranslations,
-} from "../hooks";
+import { useAppSettingsState, useTranslations } from "../hooks";
 import { AppSettingsScreen, MeditationSettingsScreen } from "../screens";
-import { MONK_ROBES, WHITE_GOLD, WHITE_GREEN } from "../theme";
 import { ScreenNames } from "./constants";
 import { RootStackParamList } from "./types";
-import { Button } from "../components";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

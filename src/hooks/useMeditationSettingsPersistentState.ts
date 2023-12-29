@@ -22,6 +22,9 @@ export const DEFAULT_MEDITATION_SETTINGS_STATE: MeditationSettingsPersistentStat
       selectedTimeMinutes: 20,
       selectedPreTimeSeconds: 5,
     },
+    bellSelector: {
+      bellValue: "None",
+    },
   };
 
 /**
@@ -34,6 +37,12 @@ export function useMeditationSettingsStoredState() {
   useEffect(() => {
     const getData = async () => {
       try {
+        // Below line is needed if the state type changes. AsyncStorage will merge
+        // two of the same types, but doesn't know how to handle new fields.
+        // Only for development for now. Not sure yet how to utilize in normal
+        // operation since I'm using a bare bones storage option.
+        // await AsyncStorage.removeItem(MEDITATION_SETTINGS_STORAGE_KEY);
+
         const value = await AsyncStorage.getItem(
           MEDITATION_SETTINGS_STORAGE_KEY,
         );

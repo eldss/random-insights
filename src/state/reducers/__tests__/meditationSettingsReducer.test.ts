@@ -14,6 +14,9 @@ describe("meditationSettingsReducer tests", () => {
       selectedTimeMinutes: 20,
       selectedPreTimeSeconds: 5,
     },
+    bellSelector: {
+      bellValue: "None",
+    },
   };
   let startState: MeditationSettingsPersistentState;
   let expectedState: MeditationSettingsPersistentState;

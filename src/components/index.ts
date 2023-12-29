@@ -3,4 +3,5 @@ export * from "./Card";
 export * from "./MeditationInstructionsCard";
 export * from "./NumberLineSelector";
 export * from "./PersistentStateProvider";
+export * from "./SelectBellCard";
 export * from "./SelectTimeCard";
