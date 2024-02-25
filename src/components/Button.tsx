@@ -1,5 +1,5 @@
 import { AntDesign, Feather, Ionicons } from "@expo/vector-icons";
-import React, { ReactNode, useMemo } from "react";
+import React, { ReactNode } from "react";
 import {
   Pressable,
   PressableProps,

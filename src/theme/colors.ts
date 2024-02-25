@@ -17,20 +17,11 @@ const neutral = {
 const lotus = {
   white: "#EFF1F5",
   gray: neutral.gray100,
-  darkGold: "#BD6C00",
-  lightGold: "#EBBA76",
+  gold: "#BD6C00",
   orange: "#E16B29",
   waterBlue: "#005284",
-  lightBlue: "#B1FFFC",
-  mediumBlue: "#1ABCCC",
   leafGreen: "#006833",
-  lightPink: "#F3DCE0",
-  darkPink: "#F5A58F",
-  vibrantPink: "#C0004B",
   darkRed: "#400707",
-  darkPurple: "#4D2158",
-  mediumPurple: "#864A8A",
-  lightPurple: "#B585A0",
 };
 
 const robes = {
@@ -43,12 +34,12 @@ const robes = {
 const WHITE_GOLD: Theme = {
   dark: false,
   colors: {
-    primary: lotus.darkGold,
+    primary: lotus.gold,
     background: lotus.gray,
     card: lotus.white,
     text: neutral.black,
-    border: lotus.darkGold,
-    notification: lotus.darkGold,
+    border: lotus.gold,
+    notification: lotus.gold,
   },
 };
 
@@ -73,42 +64,6 @@ const WHITE_GREEN: Theme = {
     text: neutral.black,
     border: lotus.leafGreen,
     notification: lotus.leafGreen,
-  },
-};
-
-const PINK: Theme = {
-  dark: false,
-  colors: {
-    primary: lotus.vibrantPink,
-    background: lotus.darkPink,
-    card: lotus.lightPink,
-    text: neutral.black,
-    border: lotus.vibrantPink,
-    notification: lotus.vibrantPink,
-  },
-};
-
-const BLUE: Theme = {
-  dark: false,
-  colors: {
-    primary: lotus.waterBlue,
-    background: lotus.mediumBlue,
-    card: lotus.lightBlue,
-    text: neutral.black,
-    border: lotus.waterBlue,
-    notification: lotus.waterBlue,
-  },
-};
-
-const DARK_PURPLE: Theme = {
-  dark: true,
-  colors: {
-    primary: lotus.lightGold,
-    background: lotus.darkPurple,
-    card: lotus.mediumPurple,
-    text: neutral.gray100,
-    border: lotus.lightGold,
-    notification: lotus.lightGold,
   },
 };
 
@@ -143,23 +98,11 @@ export const THEMES: AppTheme[] = [
     id: "WhiteGreen",
     theme: WHITE_GREEN,
   },
-  {
-    id: "Pink",
-    theme: PINK,
-  },
-  {
-    id: "Blue",
-    theme: BLUE,
-  },
   /*
     Dark Themes
    */
   {
     id: "MonkRobes",
     theme: MONK_ROBES,
-  },
-  {
-    id: "DarkPurple",
-    theme: DARK_PURPLE,
   },
 ] as const;
