@@ -16,7 +16,8 @@ export type ButtonPreset =
   | "refresh"
   | "settings"
   | "collapsible"
-  | "selectOption";
+  | "selectOption"
+  | "doAction";
 
 export interface ButtonProps extends PressableProps {
   /**
@@ -130,6 +131,20 @@ export function Button(props: ButtonProps) {
             </Text>
           </View>
         );
+      case "doAction":
+        const $viewColors: ViewStyle = {
+          backgroundColor: theme.colors.primary,
+        };
+        const $textColors: TextStyle = {
+          color: theme.dark ? theme.colors.background : theme.colors.card,
+        };
+        return (
+          <View
+            style={[$doActionContainer, $viewColors, pressed ? $pressed : null]}
+          >
+            <Text style={[$doActionText, $textColors]}>{children}</Text>
+          </View>
+        );
       default:
         return children;
     }
@@ -158,4 +173,20 @@ const $optionContainerBase: ViewStyle = {
 const $optionTextBase: TextStyle = {
   fontSize: fontSize.md,
   textAlign: "center",
+};
+
+const $doActionContainer: ViewStyle = {
+  padding: spacing.xs,
+  borderRadius: spacing.xxs,
+  justifyContent: "center",
+  alignItems: "center",
+};
+
+const $doActionText: TextStyle = {
+  fontSize: fontSize.mdLg,
+  fontWeight: "500",
+};
+
+const $pressed: ViewStyle = {
+  opacity: 0.65,
 };

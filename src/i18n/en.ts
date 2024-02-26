@@ -16,6 +16,7 @@ const en = {
     theme: "Theme",
     current: "Current",
     options: "Options",
+    startMeditation: "Start Meditation",
   },
   meditations: {
     common: {

@@ -1,7 +1,6 @@
 import { useTheme } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useLayoutEffect } from "react";
-import { Button as ReactButton, ViewStyle } from "react-native";
 import {
   Button,
   MeditationInstructionsCard,
@@ -11,11 +10,13 @@ import {
 import {
   persistMeditationSettings,
   useMeditationSettingsState,
+  useTranslations,
 } from "../hooks";
 import { ScreenNames } from "../navigators/constants";
 import { RootStackParamList } from "../navigators/types";
 import { spacing } from "../theme";
 import { ScreenBase } from "./ScreenBase";
+import { ViewStyle } from "react-native";
 
 type Props = NativeStackScreenProps<
   RootStackParamList,
@@ -28,7 +29,7 @@ type Props = NativeStackScreenProps<
  */
 export function MeditationSettingsScreen({ navigation }: Props) {
   const state = useMeditationSettingsState();
-  const theme = useTheme();
+  const translate = useTranslations();
 
   // Render settings button in the header
   useLayoutEffect(() => {
@@ -52,20 +53,21 @@ export function MeditationSettingsScreen({ navigation }: Props) {
       <MeditationInstructionsCard />
       <SelectTimeCard />
       <SelectBellCard />
-      <ReactButton
-        title="Save State"
+      <Button
+        preset="doAction"
+        style={$startButton}
         onPress={() => {
           persistMeditationSettings(state);
           console.log(state);
         }}
-        color={theme.colors.primary}
-      />
+      >
+        {translate("general.startMeditation")}
+      </Button>
     </ScreenBase>
   );
 }
 
-const $container: ViewStyle = {
-  flex: 1,
-  alignItems: "center",
-  paddingTop: spacing.xs,
+const $startButton: ViewStyle = {
+  marginHorizontal: spacing.xs,
+  marginBottom: spacing.md,
 };

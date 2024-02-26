@@ -16,7 +16,6 @@ export function AppNavigator() {
     <NavigationContainer theme={savedTheme.theme}>
       <Stack.Navigator
         screenOptions={{
-          headerTitleStyle: { color: savedTheme.theme.colors.primary },
           headerBackTitleVisible: false,
         }}
       >

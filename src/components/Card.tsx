@@ -1,7 +1,7 @@
 import React, { ReactNode, useMemo, useState } from "react";
 import { Text, TextStyle, View, ViewStyle } from "react-native";
 import { Shadow } from "react-native-shadow-2";
-import { colors, spacing, textStyle } from "../theme";
+import { spacing, textStyle } from "../theme";
 import { Button } from "./Button";
 import { useTheme } from "@react-navigation/native";
 

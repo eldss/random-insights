@@ -38,6 +38,7 @@ describe("<Button />", () => {
     { preset: "settings" },
     { preset: "collapsible" },
     { preset: "selectOption" },
+    { preset: "doAction" },
   ])(
     `Button with preset $preset calls onPress when pressed`,
     async ({ preset }) => {
