@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { useAppSettingsState, useTranslations } from "../hooks";
 import { AppSettingsScreen, MeditationSettingsScreen } from "../screens";
+import MeditationScreen from "../screens/MeditationScreen";
 import { ScreenNames } from "./constants";
 import { RootStackParamList } from "./types";
 
@@ -22,6 +23,13 @@ export function AppNavigator() {
         <Stack.Screen
           name={ScreenNames.MED_SETTINGS}
           component={MeditationSettingsScreen}
+          options={{
+            title: translate("general.appName"),
+          }}
+        />
+        <Stack.Screen
+          name={ScreenNames.MEDITATION}
+          component={MeditationScreen}
           options={{
             title: translate("general.appName"),
           }}

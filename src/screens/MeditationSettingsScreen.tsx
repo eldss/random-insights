@@ -1,6 +1,6 @@
-import { useTheme } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useLayoutEffect } from "react";
+import { ViewStyle } from "react-native";
 import {
   Button,
   MeditationInstructionsCard,
@@ -16,7 +16,6 @@ import { ScreenNames } from "../navigators/constants";
 import { RootStackParamList } from "../navigators/types";
 import { spacing } from "../theme";
 import { ScreenBase } from "./ScreenBase";
-import { ViewStyle } from "react-native";
 
 type Props = NativeStackScreenProps<
   RootStackParamList,
@@ -58,7 +57,10 @@ export function MeditationSettingsScreen({ navigation }: Props) {
         style={$startButton}
         onPress={() => {
           persistMeditationSettings(state);
-          console.log(state);
+          console.log(
+            `Moving to meditation screen with state: ${JSON.stringify(state)}`,
+          );
+          navigation.push(ScreenNames.MEDITATION);
         }}
       >
         {translate("general.startMeditation")}
