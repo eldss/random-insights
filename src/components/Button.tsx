@@ -17,7 +17,8 @@ export type ButtonPreset =
   | "settings"
   | "collapsible"
   | "selectOption"
-  | "doAction";
+  | "doAction"
+  | "doActionSecondary";
 
 export interface ButtonProps extends PressableProps {
   /**
@@ -76,6 +77,8 @@ export function Button(props: ButtonProps) {
 
   // Gets what should be displayed as text in the button based on preset value
   const getButtonDisplay = (pressed: boolean): ReactNode => {
+    let $viewColor: ViewStyle;
+    let $textColor: TextStyle;
     switch (preset) {
       case "refresh":
         return (
@@ -113,7 +116,7 @@ export function Button(props: ButtonProps) {
           />
         );
       case "selectOption":
-        const $viewColor: ViewStyle = selectOptionProps.isSelected
+        $viewColor = selectOptionProps.isSelected
           ? {
               borderColor: theme.colors.border,
               backgroundColor: theme.colors.primary,
@@ -121,8 +124,8 @@ export function Button(props: ButtonProps) {
           : {
               borderColor: theme.colors.border,
             };
-        const $textColor: TextStyle = selectOptionProps.isSelected
-          ? { color: theme.dark ? theme.colors.background : theme.colors.card }
+        $textColor = selectOptionProps.isSelected
+          ? { color: theme.colors.card }
           : { color: theme.colors.border };
         return (
           <View style={[$optionContainerBase, $viewColor]}>
@@ -132,17 +135,35 @@ export function Button(props: ButtonProps) {
           </View>
         );
       case "doAction":
-        const $viewColors: ViewStyle = {
+        $viewColor = {
           backgroundColor: theme.colors.primary,
+          borderWidth: 1,
+          borderColor: theme.colors.primary,
         };
-        const $textColors: TextStyle = {
-          color: theme.dark ? theme.colors.background : theme.colors.card,
+        $textColor = {
+          color: theme.colors.card,
         };
         return (
           <View
-            style={[$doActionContainer, $viewColors, pressed ? $pressed : null]}
+            style={[$doActionContainer, $viewColor, pressed ? $pressed : null]}
           >
-            <Text style={[$doActionText, $textColors]}>{children}</Text>
+            <Text style={[$doActionText, $textColor]}>{children}</Text>
+          </View>
+        );
+      case "doActionSecondary":
+        $viewColor = {
+          backgroundColor: theme.colors.card,
+          borderColor: theme.colors.primary,
+          borderWidth: 1,
+        };
+        $textColor = {
+          color: theme.colors.primary,
+        };
+        return (
+          <View
+            style={[$doActionContainer, $viewColor, pressed ? $pressed : null]}
+          >
+            <Text style={[$doActionText, $textColor]}>{children}</Text>
           </View>
         );
       default:

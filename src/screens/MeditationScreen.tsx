@@ -3,25 +3,42 @@ import { Audio } from "expo-av";
 import { useKeepAwake } from "expo-keep-awake";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useRef, useState } from "react";
-import { Button, SafeAreaView, Text, View, ViewStyle } from "react-native";
+import {
+  Image,
+  SafeAreaView,
+  Text,
+  TextStyle,
+  View,
+  ViewStyle,
+  useWindowDimensions,
+} from "react-native";
+import {
+  ColorFormat,
+  CountdownCircleTimer,
+} from "react-native-countdown-circle-timer";
+import { Button } from "../components";
 import { useMeditationSettingsState } from "../hooks";
+import { spacing } from "../theme";
 
 /**
  * Renders the countdown while meditation is active
  */
 const MeditationScreen = ({ navigation }) => {
-  useKeepAwake();
-
   const settings = useMeditationSettingsState();
-  const [timeLeftSeconds, setTimeLeftSeconds] = useState(
-    settings.timeSelector.selectedTimeMinutes * 60,
+  const [timeLeft, setTimeLeft] = useState(
+    settings.timeSelector.selectedTimeMinutes * 60, // in seconds
+  );
+  const [preStartTimeLeft, setPreStartTimeLeft] = useState(
+    settings.timeSelector.selectedPreTimeSeconds,
   );
   const [isMeditating, setIsMeditating] = useState(false);
   const midBells = useRef(getMidBells());
   const timer = useRef<NodeJS.Timeout>();
   const bell = useRef(new Audio.Sound());
 
+  useKeepAwake();
   const theme = useTheme();
+  const { width } = useWindowDimensions();
 
   // Load sound once and make it available
   useEffect(() => {
@@ -58,24 +75,45 @@ const MeditationScreen = ({ navigation }) => {
 
   // Pause for selected time then start meditation
   useEffect(() => {
-    const preTimeDelay = settings.timeSelector.selectedPreTimeSeconds * 1000;
-    const preTimeTimer = setTimeout(() => {
-      playBell();
-      handleStart();
-    }, preTimeDelay);
+    // Update the pre-time left every second to display it
+    const interval = setInterval(() => {
+      setPreStartTimeLeft((prevTimeLeft) => {
+        if (prevTimeLeft <= 1) {
+          // Pre-time has finished, clear the interval and start meditation
+          clearInterval(interval);
+          playBellOnce();
+          handleStart();
+          return 0;
+        }
+        // Otherwise, decrement the pre-time left
+        return prevTimeLeft - 1;
+      });
+    }, 1000);
 
-    return () => clearTimeout(preTimeTimer);
+    return () => clearInterval(interval);
   }, []);
 
-  // Play bell
-  async function playBell() {
+  // Play bell one time
+  async function playBellOnce() {
     if (bell.current) {
       console.log("Playing sound");
       await bell.current.replayAsync();
     } else {
-      console.log("Sound isn't loaded yet");
+      console.log("Sound not loaded");
     }
   }
+
+  // Play bell three times in a row
+  const playBellThreeTimes = async () => {
+    if (bell.current) {
+      for (let i = 0; i < 3; i++) {
+        await bell.current.replayAsync();
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+      }
+    } else {
+      console.log("Sound not loaded");
+    }
+  };
 
   // Determine where to play mid meditation bells
   function getMidBells(): Set<number> {
@@ -104,26 +142,22 @@ const MeditationScreen = ({ navigation }) => {
     return timesToRing;
   }
 
+  // Starts meditation timer from wherever the time currently is set to.
+  // Also handles the end of the meditation.
   function handleStart() {
     setIsMeditating(true);
     if (!timer.current) {
       timer.current = setInterval(() => {
-        setTimeLeftSeconds((prevTime) => {
+        setTimeLeft((prevTime) => {
           if (prevTime <= 1) {
             clearInterval(timer.current);
             timer.current = undefined;
-            playBell(); // End bell
+            playBellThreeTimes(); // End bells
             setIsMeditating(false);
             return 0;
           }
-          console.log(
-            `Current time: ${prevTime}, Should ring bell: ${midBells.current.has(
-              prevTime,
-            )}`,
-            midBells.current,
-          );
           if (midBells.current.has(prevTime)) {
-            playBell();
+            playBellOnce();
           }
           return prevTime - 1;
         });
@@ -131,6 +165,7 @@ const MeditationScreen = ({ navigation }) => {
     }
   }
 
+  // Pause the meditation
   function handlePause() {
     if (timer.current) {
       clearInterval(timer.current);
@@ -139,7 +174,8 @@ const MeditationScreen = ({ navigation }) => {
     setIsMeditating(false);
   }
 
-  function handleCancel() {
+  // End the meditation
+  function handleEnd() {
     setIsMeditating(false);
     clearInterval(timer.current);
     navigation.goBack();
@@ -159,17 +195,56 @@ const MeditationScreen = ({ navigation }) => {
     return `${formattedHours}${formattedMinutes}:${formattedSeconds}`;
   }
 
-  return (
-    <SafeAreaView style={$container}>
-      <StatusBar style={theme.dark ? "light" : "dark"} />
-      <Text>Meditation Time: {formatTime(timeLeftSeconds)} minutes</Text>
-      {isMeditating ? (
-        <Button title="Pause Meditation" onPress={handlePause} />
+  // Only displays one button at a given time depending on state. This function
+  // decides what is displayed.
+  function getDisplayedButton() {
+    if (preStartTimeLeft > 0) {
+      return (
+        // Display as button to keep consistent styling. Not a big deal that
+        // it doesn't do anything.
+        <Button preset="doActionSecondary">
+          {`Starting in ${preStartTimeLeft}`}
+        </Button>
+      );
+    } else if (timeLeft > 0) {
+      return isMeditating ? (
+        <Button preset="doActionSecondary" onPress={handlePause}>
+          Pause
+        </Button>
       ) : (
-        <Button title={"Resume Meditation"} onPress={handleStart} />
-      )}
-      <Button title="Cancel Meditation" onPress={handleCancel} />
-      <Button title="Play Bell" onPress={playBell} />
+        <Button preset="doAction" onPress={handleStart}>
+          Resume
+        </Button>
+      );
+    } else {
+      return (
+        <Button preset="doAction" onPress={handleEnd}>
+          Cancel
+        </Button>
+      );
+    }
+  }
+
+  return (
+    <SafeAreaView style={[$container, { backgroundColor: theme.colors.card }]}>
+      <StatusBar style={theme.dark ? "light" : "dark"} />
+      <CountdownCircleTimer
+        isPlaying={isMeditating}
+        duration={settings.timeSelector.selectedTimeMinutes * 60}
+        colors={theme.colors.primary as ColorFormat}
+        initialRemainingTime={timeLeft}
+        size={width * 0.75}
+        strokeWidth={20}
+      >
+        {({ remainingTime }) => (
+          <Text style={$timerText}>{formatTime(remainingTime)}</Text>
+        )}
+      </CountdownCircleTimer>
+      <Image
+        source={require("../../assets/Lotus_Icon_Filled.png")}
+        style={{ width: 85, height: 85, marginVertical: spacing.lg }}
+      />
+      <View style={$buttonContainer}>{getDisplayedButton()}</View>
     </SafeAreaView>
   );
 };
@@ -178,6 +253,14 @@ const $container: ViewStyle = {
   flex: 1,
   justifyContent: "center",
   alignItems: "center",
+};
+
+const $buttonContainer: ViewStyle = {
+  width: "75%",
+};
+
+const $timerText: TextStyle = {
+  fontSize: 55,
 };
 
 export default MeditationScreen;
