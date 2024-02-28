@@ -17,6 +17,9 @@ const en = {
     current: "Current",
     options: "Options",
     startMeditation: "Start Meditation",
+    pause: "Pause",
+    resume: "Resume",
+    end: "End",
   },
   meditations: {
     common: {
