@@ -25,7 +25,7 @@
       }
     },
     "web": {
-      "favicon": "./assets/Lotus_Icon_Filled.png"
+      "favicon": "./assets/Lotus_Icon_Filled_Gray.png"
     },
     "extra": {
       "eas": {
