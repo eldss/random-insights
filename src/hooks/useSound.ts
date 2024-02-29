@@ -6,26 +6,21 @@ export function useSound(audioUri: AVPlaybackSource) {
 
   useEffect(() => {
     async function loadSound() {
-      console.log("Loading sound...");
       await Audio.setAudioModeAsync({
         playsInSilentModeIOS: true,
         staysActiveInBackground: true,
       });
       await sound.current.loadAsync(audioUri);
-      console.log("Sound loaded");
     }
 
     loadSound();
 
     // Clean up resources
     return () => {
-      console.log("Unloading sound...");
       if (sound.current) {
         sound.current
           .unloadAsync()
-          .then(() => {
-            console.log("Sound unloaded");
-          })
+          .then(() => {})
           .catch((error) => {
             console.error("Error unloading sound", error);
           });

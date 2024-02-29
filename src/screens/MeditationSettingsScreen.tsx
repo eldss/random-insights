@@ -57,9 +57,6 @@ export function MeditationSettingsScreen({ navigation }: Props) {
         style={$startButton}
         onPress={() => {
           persistMeditationSettings(state);
-          console.log(
-            `Moving to meditation screen with state: ${JSON.stringify(state)}`,
-          );
           navigation.push(ScreenNames.MEDITATION);
         }}
       >
