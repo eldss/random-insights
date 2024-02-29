@@ -11,18 +11,24 @@
       "resizeMode": "contain",
       "backgroundColor": "#d3d3d3"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "UIBackgroundModes": ["audio"]
-      }
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      },
+      "bundleIdentifier": "com.eldss.randominsights"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/Lotus_Icon_Filled.png",
         "backgroundColor": "#D3D3D3"
-      }
+      },
+      "package": "com.eldss.randominsights"
     },
     "web": {
       "favicon": "./assets/Lotus_Icon_Filled_Gray.png"
@@ -33,6 +39,8 @@
       }
     },
     "owner": "eldss",
-    "plugins": ["expo-localization"]
+    "plugins": [
+      "expo-localization"
+    ]
   }
 }
