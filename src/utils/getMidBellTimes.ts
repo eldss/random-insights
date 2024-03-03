@@ -14,7 +14,8 @@ export function getMidBellTimes(
   if (bells.endsWith("%")) {
     const percentage = parseInt(bells, 10);
     // Calculate time in seconds based on the percentage
-    const timeInSeconds = Math.round((percentage / 100) * totalTimeInSeconds);
+    const timeInSeconds =
+      totalTimeInSeconds - Math.round((percentage / 100) * totalTimeInSeconds);
     timesToRing.add(timeInSeconds);
   } else if (bells.endsWith("mins")) {
     const mins = parseInt(bells, 10);

@@ -5,11 +5,11 @@ describe("getMidBellTimes", () => {
   // Test for each percentage-based bell value
   const totalTimeInSeconds = 3600; // 1 hour for easy calculation
   const percentageTests: { bell: BellValue; expectedTime: number }[] = [
-    { bell: "75%", expectedTime: 2700 },
-    { bell: "10%", expectedTime: 360 },
-    { bell: "25%", expectedTime: 900 },
+    { bell: "10%", expectedTime: 3240 },
+    { bell: "25%", expectedTime: 2700 },
     { bell: "50%", expectedTime: 1800 },
-    { bell: "90%", expectedTime: 3240 },
+    { bell: "75%", expectedTime: 900 },
+    { bell: "90%", expectedTime: 360 },
   ];
 
   percentageTests.forEach(({ bell, expectedTime }) => {
