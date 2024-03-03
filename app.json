@@ -2,7 +2,7 @@
   "expo": {
     "name": "Random Insights",
     "slug": "random-insights",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "icon": "./assets/Lotus_Icon_Filled_Gray.png",
     "userInterfaceStyle": "light",
     "orientation": "portrait",
