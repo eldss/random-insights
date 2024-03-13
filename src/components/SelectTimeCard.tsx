@@ -1,5 +1,5 @@
 import { useTheme } from "@react-navigation/native";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { Text, TextStyle } from "react-native";
 import {
   useMeditationSettingsDispatch,
@@ -25,8 +25,7 @@ const PRE_BELL_TIME_OPTIONS = [
  * A card that allows the user to select a time period to meditate for.
  */
 export function SelectTimeCard() {
-  const [preTimeIndex, setPreTimeIndex] = useState(null);
-  const { timeSelector, bellSelector } = useMeditationSettingsState();
+  const { timeSelector } = useMeditationSettingsState();
   const dispatch = useMeditationSettingsDispatch();
   const translate = useTranslations();
   const theme = useTheme();
@@ -37,19 +36,7 @@ export function SelectTimeCard() {
     [theme],
   );
 
-  // Maps saved pre-time seconds to the index of the value for the options grouping
-  useEffect(() => {
-    const index = PRE_BELL_TIME_OPTIONS.findIndex(
-      (option) => option.value === timeSelector.selectedPreTimeSeconds,
-    );
-
-    if (index < 0) {
-      setPreTimeIndex(0);
-    } else {
-      setPreTimeIndex(index);
-    }
-  }, []);
-
+  // TODO: Make this a utility function
   // Time displayed with hours in a digital clock format
   const formattedTime = useMemo(() => {
     const selectedTime = timeSelector.selectedTimeMinutes;
@@ -70,11 +57,17 @@ export function SelectTimeCard() {
     [dispatch],
   );
 
+  const getIndex = () => {
+    const index = PRE_BELL_TIME_OPTIONS.map((val) => val.value).indexOf(
+      timeSelector.selectedPreTimeSeconds,
+    );
+    return index >= 0 ? index : 0;
+  };
+
   // Sets pre-time option selected index as well as setting the actual seconds
   // value in app state
   const setPreTimeIndexAndSecs = useCallback(
     (index: number) => {
-      setPreTimeIndex(index);
       dispatch({
         type: MedSettingsActionType.UPDATE_PRE_START_TIME,
         payload: { preTimeSeconds: PRE_BELL_TIME_OPTIONS[index].value },
@@ -102,7 +95,7 @@ export function SelectTimeCard() {
       </Text>
       <OptionSelectGroup
         options={PRE_BELL_TIME_OPTIONS}
-        selectedIndex={preTimeIndex}
+        selectedIndex={getIndex()}
         setSelectedIndex={setPreTimeIndexAndSecs}
       />
     </Card>

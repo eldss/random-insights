@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { ViewStyle } from "react-native";
 import {
   Button,
@@ -27,13 +27,14 @@ type Props = NativeStackScreenProps<
  * bells, and other options.
  */
 export function MeditationSettingsScreen({ navigation }: Props) {
-  const state = useMeditationSettingsState();
+  const startState = useMeditationSettingsState();
+  const [state, setState] = useState(startState);
   const translate = useTranslations();
 
   // Render settings button in the header
   useLayoutEffect(() => {
     // On iOS there is a bug that causes this to rendered halfway off the screen randomly
-    // This was a suggested way to fix that. See:
+    // This was a suggested way to fix for that. See:
     // https://github.com/software-mansion/react-native-screens/issues/432#issuecomment-1783867314
     setTimeout(() => {
       navigation.setOptions({
@@ -56,8 +57,9 @@ export function MeditationSettingsScreen({ navigation }: Props) {
         preset="doAction"
         style={$startButton}
         onPress={() => {
-          persistMeditationSettings(state);
-          navigation.push(ScreenNames.MEDITATION);
+          persistMeditationSettings(state).then(() =>
+            navigation.push(ScreenNames.MEDITATION),
+          );
         }}
       >
         {translate("general.startMeditation")}
