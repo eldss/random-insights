@@ -2,7 +2,7 @@
   "expo": {
     "name": "Random Insights",
     "slug": "random-insights",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "icon": "./assets/Lotus_Icon_Filled_Gray.png",
     "userInterfaceStyle": "light",
     "orientation": "portrait",
@@ -35,6 +35,12 @@
       }
     },
     "owner": "eldss",
-    "plugins": ["expo-localization"]
+    "plugins": ["expo-localization"],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/851d17dc-25b3-431c-8d33-7f77ef150710"
+    }
   }
 }
