@@ -28,7 +28,7 @@ expo start
 
 ## Usage
 
-After launching the app, you can start using it locally. Or simply download it from the App Store or Google Play.
+After launching the app, you can start using it locally. Or simply download it from the App Store. It is not yet in the play store due to recent changes making it harder to hobby developers to meet testing and screening requirements.
 
 ## License
 
