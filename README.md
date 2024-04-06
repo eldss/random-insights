@@ -2,6 +2,8 @@
 
 Random Insights is a straightforward and effective meditation timer app designed to help users find focus during their meditation practice. With its simple, intuitive interface, users can easily set their meditation lengths and include mid-meditation bells to enhance their experience. The app also offers randomized guidance to assist users in their meditation journey.
 
+See it in Apple App Store: https://apps.apple.com/ge/app/random-insights/id6478821183?platform=iphone
+
 ## Features
 
 - **Meditation Timer**: Set your desired meditation length with an easy-to-use interface.
